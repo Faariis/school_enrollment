@@ -52,3 +52,28 @@ class LoginView(APIView):
         }
 
         return response
+
+class TeacherView(APIView):
+    def get(self, request):
+        # get cookie and from cookie retrieve the user
+        token = request.COOKIES.get('jwt')
+        # decode it to get the user
+        if not token:
+            raise AuthenticationFailed("Unauthenticated access")
+        try:
+            payload= jwt.decode(token, api_settings.JWT_PRIVATE_KEY, algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed("Unauthenticated access")
+        
+        teacher= Teacher.objects.get(id= payload['id'])
+        serializer= TeacherSerializer(teacher)
+        return Response(serializer.data)
+
+class LogoutView(APIView):
+    def post(self, request):
+        response= Response()
+        response.delete_cookie('jwt')
+        response.data= {
+            'message':'success'
+        }
+        return response
