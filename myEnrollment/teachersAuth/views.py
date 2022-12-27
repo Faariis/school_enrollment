@@ -43,12 +43,12 @@ class LoginView(APIView):
         # secret can be as env var or can be in payload
         # no need for .decode('utf-8')
         token= jwt.encode(payload, api_settings.JWT_PRIVATE_KEY, algorithm="HS256")
-
-        # response= Response()
-        # response.data= {
-        #     'jwt':token
-        # }
-        return Response({
+        
+        response= Response()
+        # We don't want frontend to access token so httponly
+        response.set_cookie(key='jwt', value=token, httponly=True)
+        response.data= {
             'jwt':token
-            }
-        )
+        }
+
+        return response
