@@ -15,12 +15,11 @@ class TeacherSerializer(serializers.ModelSerializer):
 def create(self, validated_data):
     # extract pass
     print("**Validated data before: ", **validated_data)
+    teacher= self.Meta.model(**validated_data)
     my_password= validated_data.pop('password', None)
     print("Validated data after: ", validated_data)
     print("**Validated data after: ", **validated_data)
     # create teacher and pass data without password
-    teacher= self.Meta.model(**validated_data)
-   
     if my_password:
         # set_password() provided by Django and hashed
         teacher.set_password(my_password)
