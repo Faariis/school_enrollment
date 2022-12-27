@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'teachersAuth'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,5 +134,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL='teachersAuth.Teacher'
+AUTH_USER_MODEL= 'teachersAuth.Teacher'
 JWT_PRIVATE_KEY= 'my_secret'
+# to allow all frontend ports to access app
+CORS_ORIGIN_ALLOW_ALL= True
+"""
+we login with cookies and return the cookie,
+if not set, our frontend will not be able to see the cookies
+"""
+CORS_ALLOW_CREDENTIALS= True 
