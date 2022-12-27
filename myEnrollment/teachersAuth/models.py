@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class Teacher(AbstractUser):
     name= models.CharField(max_length = 50)
     email= models.CharField(max_length = 50, unique= True)
-    password= models.CharField(max_length = 50)
+    password= models.CharField(max_length = 255)
     # Django by default creates username we have to overrdie it
     # We want that Django logs in with email and password
     username= None
