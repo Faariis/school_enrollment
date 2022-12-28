@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aty2a&_tm9^pk3-3wct$!qlyne(bs5pa&jk60=yq7#xy@+@_jx'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+print("DJANGO_DEBUG env: ", os.environ.get('DJANGO_DEBUG'))
+DEBUG= os.environ.get('DJANGO_DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+if os.environ.get('DJANGO_ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(',')
 
+print("DJANGO_ALLOWED_HOSTS env: ", os.environ.get('DJANGO_ALLOWED_HOSTS'))
 
 # Application definition
 
@@ -76,16 +80,29 @@ WSGI_APPLICATION = 'myEnrollment.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myEnrollmentDB',
-        'USER': 'anel',
-        'PASSWORD':'pass'
+"""
+GITHUB_WORKFLOW env is only available in github actions.
+On server other non-GITHUB env var will be used from repository secret
+"""
+if os.getenv('GITHUB_WORKFLOW'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'github_actions',
+            'USER': os.environ['GITHUB_DB_USER'],
+            'PASSWORD':os.environ['GITHUB_DB_PASS'],
+            'HOST': os.environ['GITHUB_DB_HOST']
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DATABASE_NAME'),
+            'USER': os.environ.get('DATABASE_USER'),
+            'PASSWORD':os.environ.get('DATABASE_PASS')
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -135,7 +152,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL= 'teachersAuth.Teacher'
-JWT_PRIVATE_KEY= 'my_secret'
+JWT_PRIVATE_KEY= os.environ.get('JWT_PRIVATE_KEY')
 # to allow all frontend ports to access app
 CORS_ORIGIN_ALLOW_ALL= True
 """
