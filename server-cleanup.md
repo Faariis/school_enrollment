@@ -172,7 +172,26 @@ Python 3.8.10
 - IT CANNOT BE DONE ! SYSTEM VERSION 3.6.9 ON BIONIC, 3.8.10 CAN BE INSTALLED
   AND USED ON VIRTUAL ENV, BUT NOT AS SYSTEM INTSALLATION.
 
-### Setting up Runner with 3.6.9
+#### SOLUTION TO USE MULTIPLE PTYHON VERSIONS
+- On bionic: `python3` == `3.6.9` global system one installation
+- I have installed `python3.8.10` from source and is installed in
+`/usr/local/bin` by invoking `sudo make <altsomethingtarget>`
+- In order to use `3.8.10` I cannot *upgrade* from `3.6.9` to `3.8.10` on bionic,
+but rather to use virtualenv. Now `python -m pip venv` doesn't allow to say which
+python verion to use, but `virtualenv` package does. To be sure we will not install
+it globally, but rather per user `--user` flat below:
+```bash
+$ python3 -m pip install --user virtualenv
+```
+- Create venv with other python version:
+```bash
+$ virtualenv -p="/usr/local/bin/python3.8" env
+
+(env) /tmp/env$ python --version
+Python 3.8.10
+```
+
+### Setting up Runner
 - See GitHub Project ->Settings->Actions->Runners how to create and configure
   new runner (the same name as a server). Created `svc.sh` script to start the service of runners
   ```bash
@@ -224,4 +243,113 @@ Python 3.8.10
     Dec 28 17:10:23 start-tehnicka runsvc.sh[8971]: 2022-12-28 17:10:23Z: Listening for Jobs
 
   ```
-- 
+- Now go and trigger Action on GitHub (GH).
+
+### Configuring gunicorn server
+- It has to be run from `application` folder
+```
+$ gunicorn --bind 0.0.0.0:8000 myEnrollment.wsgi
+```
+
+Have found that yt is creating the socket `/etc/systemd/system/gunicorn.socket`
+```bash
+[Unit]
+Description=gunicorn socket
+[Socket]
+ListenStream=/run/gunicorn.socket
+
+[Install]
+wantedBy=sockets.target
+```
+Don't know why ^^^
+After that created `/etc/systemd/service`
+```bash
+[Unit]
+Description=gunicorn daemon for django project
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=anel
+Group=www-data
+WorkingDirectory=/home/anel/..
+ExecStart=/home/.../bin/gunicorn \
+          --access-logfile - \
+          --workers  3\
+          --bind unix:/run/gunicorn.sock \
+          mysite.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Run status
+```bash
+$ sudo systemctl status gunicorn.socket
+```
+
+`$ sudo ufw status`
+
+### Stoping already existing processes
+
+We have ports already occupied 8000,5000,9000, let's see services and release them
+```bash
+$ netstat -tulpn
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:2807            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:3000            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:9000            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::2807                 :::*                    LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -     
+```
+
+With root we have more info
+```bash
+$ sudo netstat -tulpn
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      28845/systemd-resol 
+tcp        0      0 0.0.0.0:2807            0.0.0.0:*               LISTEN      27324/sshd          
+tcp        0      0 0.0.0.0:3000            0.0.0.0:*               LISTEN      11173/nginx: master 
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      11173/nginx: master 
+tcp        0      0 0.0.0.0:5000            0.0.0.0:*               LISTEN      11173/nginx: master 
+tcp        0      0 0.0.0.0:9000            0.0.0.0:*               LISTEN      11173/nginx: master 
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      18419/mariadbd      
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      11173/nginx: master 
+tcp6       0      0 :::2807                 :::*                    LISTEN      27324/sshd          
+tcp6       0      0 :::80                   :::*                    LISTEN      11173/nginx: master 
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           28845/systemd-resol 
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           731/dhclient
+```
+
+Indeed
+```bash
+$ cat /etc/nginx/sites-enabled/
+default         mojezagadjenje  scada           test            tscze         
+
+$ ps aux|grep 11173
+root     11173  0.0  0.2 141268  2272 ?        S    Nov16   0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+```
+Culprit is `nginx`
+How to remove
+```bash
+$ sudo netstat -tulpn|grep 8000
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      11173/nginx: master 
+$ sudo rm /etc/nginx/sites-enabled/test
+$ sudo netstat -tulpn|grep 8000
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      11173/nginx: master 
+# Use reload
+$ sudo nginx -s reload
+$ sudo netstat -tulpn|grep 8000
+
+```
