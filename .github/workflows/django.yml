@@ -3,7 +3,7 @@ name: Django CI
 on:
   # any code pushed to master and develop branch will be a trigger
   push:
-    branches: [ "main", "develop", "learning-1"  ]
+    branches: [ "learning-1"  ]
   # any code pushed to master and develop branch will also be a trigger
   pull_request:
     branches: [ "main"]
@@ -27,8 +27,10 @@ jobs:
       run: |
         # I couldn't update packages here because of sudo
         # It is done manually, updated python3 and pip3 and python3.8-venv
-        # Note server is bionic do upgrade from apt repository
-        python3 -m venv env # this will work
+        # Note server is bionic and system installation version 3.6.9 cannot be changed to 3.8.10,
+        # so instead we are goint to use virtualenv that is installed with manually built binary 3.8.10
+        # python3 -m venv env # this will not work on bionic
+        virtualenv -p="/usr/local/bin/python3.8" env
         . env/bin/activate # activate virtual env
         python3 -m pip install -r requirements.txt
    # - name: Run Tests
