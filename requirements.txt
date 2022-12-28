@@ -2,6 +2,7 @@ asgiref==3.6.0
 backports.zoneinfo==0.2.1
 Django==4.1.4
 django-cors-headers==3.13.0
+django-countries==7.5
 django-filter==22.1
 djangorestframework==3.14.0
 importlib-metadata==5.2.0
@@ -12,4 +13,5 @@ packaging==22.0
 PyJWT==2.6.0
 pytz==2022.7
 sqlparse==0.4.3
+typing-extensions==4.4.0
 zipp==3.11.0

@@ -18,10 +18,11 @@ class TeacherSerializer(serializers.ModelSerializer):
         print("Validated data after: ", validated_data)
         # create teacher and pass data without password
         instance= self.Meta.model(**validated_data)
-    
+        print("MyCountry",instance.country)
         if my_password:
             # set_password() provided by Django and hashed
             instance.set_password(my_password)
             print("U funckiji je moj pass: ", my_password)
+
         instance.save()
         return instance

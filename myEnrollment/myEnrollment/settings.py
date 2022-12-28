@@ -24,13 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-print("DJANGO_DEBUG env: ", os.environ.get('DJANGO_DEBUG'))
 DEBUG= os.environ.get('DJANGO_DEBUG') == 'True'
 
 if os.environ.get('DJANGO_ALLOWED_HOSTS'):
     ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(',')
-
-print("DJANGO_ALLOWED_HOSTS env: ", os.environ.get('DJANGO_ALLOWED_HOSTS'))
 
 # Application definition
 
@@ -43,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'teachersAuth'
+    'teachersAuth',
 ]
 
 MIDDLEWARE = [

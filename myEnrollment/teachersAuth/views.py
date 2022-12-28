@@ -21,6 +21,7 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
+        # Handle anonymous use - not needed, will be done on frontend
         email= request.data['email']
         password= request.data['password']
 
@@ -50,7 +51,6 @@ class LoginView(APIView):
         response.data= {
             'jwt':token
         }
-
         return response
 
 class TeacherView(APIView):
