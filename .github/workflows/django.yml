@@ -53,9 +53,9 @@ jobs:
         # python3 -m venv env # this will not work on bionic
         virtualenv -p="/usr/local/bin/python3.8" env
         . env/bin/activate # activate virtual env
-        # Load enviornment variables
-        . .server_env
         python3 -m pip install -r requirements.txt
+        # Load enviornment variables
+        source .server_env
    # - name: Run Tests
    #   run: |
    #     python manage.py test
