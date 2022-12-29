@@ -405,3 +405,21 @@ man systemd.journal-fields
 man systemd.directive
 man systemd.service
 ```
+
+
+### Deploy gunicron
+
+Deploy gunicorn
+
+# This one is using socket creation that is used by nginx
+https://docs.gunicorn.org/en/stable/deploy.html
+
+# This one is using PID file created on ExecStartPre with guniocrn
+https://bartsimons.me/gunicorn-as-a-systemd-service/
+
+# NISTA POSEBNO
+https://www.shubhamdipt.com/blog/how-to-create-a-systemd-service-in-linux/
+
+# How to setup Gunicorn with binding to socket in this directory that will nginx use, that is safer and faster than network port
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
