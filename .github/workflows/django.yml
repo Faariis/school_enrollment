@@ -35,14 +35,14 @@ jobs:
         JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
       run: |
           touch .server_env
-          echo $SECRET_KEY >>.server_env
-          echo $DJANGO_DEBUG >>.server_env
-          echo $DJANGO_ALLOWED_HOSTS >>.server_env
-          echo $DATABASE_NAME >>.server_env
-          echo $DATABASE_USER >>.server_env
-          echo $DATABASE_PASS >>.server_env
-          echo $DATABASE_HOST >>.server_env
-          echo $JWT_PRIVATE_KEY >>.server_env
+          echo "export SECRET_KEY="$SECRET_KEY >>.server_env
+          echo "export DJANGO_DEBUG="$DJANGO_DEBUG >>.server_env
+          echo "export DJANGO_ALLOWED_HOSTS="$DJANGO_ALLOWED_HOSTS >>.server_env
+          echo "export DATABASE_NAME="$DATABASE_NAME >>.server_env
+          echo "export DATABASE_USER="$DATABASE_USER >>.server_env
+          echo "export DATABASE_PASS="$DATABASE_PASS >>.server_env
+          echo "export DATABASE_HOST="$DATABASE_HOST >>.server_env
+          echo "export JWT_PRIVATE_KEY="$JWT_PRIVATE_KEY >>.server_env
           echo "Value from secet", $DJANGO_DEBUG
     - name: Install Dependencies
       run: |
