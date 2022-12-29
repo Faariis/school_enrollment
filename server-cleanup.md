@@ -353,3 +353,55 @@ $ sudo nginx -s reload
 $ sudo netstat -tulpn|grep 8000
 
 ```
+
+### About systemd 
+
+
+About systemd
+https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal
+https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
+https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
+https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files
+
+```bash
+
+$ timedatectl list-timezones
+$ sudo timedatectl set-timezone zone
+$ timedatectl status
+                      Local time: Thu 2022-12-29 13:56:03 CET
+                  Universal time: Thu 2022-12-29 12:56:03 UTC
+                        RTC time: Thu 2022-12-29 12:56:04
+                       Time zone: Europe/Sarajevo (CET, +0100)
+       System clock synchronized: yes
+systemd-timesyncd.service active: yes
+                 RTC in local TZ: no
+
+
+$ journalctl -b -u nginx -o json-pretty
+$ journalctl --utc # display timestamp in utc
+$ journalctl _PID=8088
+$ journalctl _UID=33 --since today
+$ journalctl -F _GID
+# With binaries
+$ sudo journalctl home/anel/actions-runner/_work/school_enrollment/school_enrollment/env/bin/gunicorn
+$ journalctl --disk-usage
+```
+
+
+About systemd service of gunicorn
+https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
+
+NOt good ^ unknown how socket is created
+From [understanding-systemd-units](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)
+
+path `/lib/systemd/system1` stores also copies of units when system install unit files
+/etc/systemd/system - takes precedence 
+Override with `.d` folder adn file with `.conf`
+Runtime units definitiosn services /run/systemd/system - priority less than /etc/ but more than /lib
+
+Man pages
+```bash
+man systemd.journal-fields
+man systemd.directive
+man systemd.service
+```
