@@ -34,15 +34,16 @@ jobs:
         DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
         JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
       run: |
-          touch .env
-          echo $SECRET_KEY >>.env
-          echo $DJANGO_DEBUG >>.env
-          echo $DJANGO_ALLOWED_HOSTS >>.env
-          echo $DATABASE_NAME >>.env
-          echo $DATABASE_USER >>.env
-          echo $DATABASE_PASS >>.env
-          echo $DATABASE_HOST >>.env
-          echo $JWT_PRIVATE_KEY >>.env
+          touch .server_env
+          echo $SECRET_KEY >>.server_env
+          echo $DJANGO_DEBUG >>.server_env
+          echo $DJANGO_ALLOWED_HOSTS >>.server_env
+          echo $DATABASE_NAME >>.server_env
+          echo $DATABASE_USER >>.server_env
+          echo $DATABASE_PASS >>.server_env
+          echo $DATABASE_HOST >>.server_env
+          echo $JWT_PRIVATE_KEY >>.server_env
+          echo "Value from secet", $DJANGO_DEBUG
     - name: Install Dependencies
       run: |
         # I couldn't update packages here because of sudo
@@ -53,7 +54,7 @@ jobs:
         virtualenv -p="/usr/local/bin/python3.8" env
         . env/bin/activate # activate virtual env
         # Load enviornment variables
-        . .env
+        . .server_env
         python3 -m pip install -r requirements.txt
    # - name: Run Tests
    #   run: |
