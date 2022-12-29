@@ -23,6 +23,26 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Retrieve the secrets and decode it to a file
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        DJANGO_DEBUG: ${{ secrets.DJANGO_DEBUG }}
+        DJANGO_ALLOWED_HOSTS: ${{ secrets.DJANGO_ALLOWED_HOSTS }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        DATABASE_USER: ${{ secrets.DATABASE_USER }}
+        DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
+        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
+      run: |
+          touch .env
+          echo $SECRET_KEY >>.env
+          echo $DJANGO_DEBUG >>.env
+          echo $DJANGO_ALLOWED_HOSTS >>.env
+          echo $DATABASE_NAME >>.env
+          echo $DATABASE_USER >>.env
+          echo $DATABASE_PASS >>.env
+          echo $DATABASE_HOST >>.env
+          echo $JWT_PRIVATE_KEY >>.env
     - name: Install Dependencies
       run: |
         # I couldn't update packages here because of sudo
@@ -32,6 +52,8 @@ jobs:
         # python3 -m venv env # this will not work on bionic
         virtualenv -p="/usr/local/bin/python3.8" env
         . env/bin/activate # activate virtual env
+        # Load enviornment variables
+        . .env
         python3 -m pip install -r requirements.txt
    # - name: Run Tests
    #   run: |
