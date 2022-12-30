@@ -1,0 +1,55 @@
+[Unit]
+# Unit can be timer,path, service,socket
+Description=Gunicorn for app
+Documentation=https://eacon.ba
+After=network.target
+Requires=gunicorn.socket
+
+[Service]
+#Add env var, that can be used by ExecStart script
+#Environment=DJANGO_DEBUG=True
+
+Environment=PROJECT_PATH=/home/anel/GitHub/school_enrollment
+Environment=APP_NAME=myEnrollment
+Environment=APP_PATH=/home/anel/GitHub/school_enrollment/myEnrollment
+Environment=GUNICORN_BIN=
+Environment=WORKER_NUM=1
+EnvironmentFile=/home/anel/GitHub/school_enrollment/.systemd_env
+#PIDFile used only for forking
+#Can be found from systemctl and $MAINPID
+User=anel
+Group=www-data
+#RuntimeDirectory=/home/anel/GitHub/school_enrollment/myEnrollment
+# It has to be absolute path
+WorkingDirectory=/home/anel/GitHub/school_enrollment/myEnrollment
+#ExecStartPre=/bin/bash -c "source /home/anel/school_enrollment/school_enrollment/env/bin/activate"
+#ExecStartPre=/bin/bash -c "source /home/anel/school_enrollment/school_enrollment/.env"
+# print to stdout and catch with StandardOutput
+# This will start new shell
+ExecStartPre=/bin/bash -c "env"
+# ExecStartPre=/bin/bash -c "env >/tmp/venv-vars.log" # doesn't work
+ExecStart=/home/anel/GitHub/school_enrollment/env/bin/gunicorn\
+          --access-logfile /tmp/gunicorn.service.log\
+          --workers ${WORKER_NUM}\
+          --error-logfile /tmp/gunicorn.service.error \
+          --bind unix:/run/gunicorn.socket\
+          ${APP_NAME}.wsgi
+ExecReload=/bin/kill -s HUP $MAINPID
+
+#If we wanted to pass stdin to script ^
+#StandardInput=socket 
+# test with: socat - TCP:server_IP_address:4444
+# https://www.linux.com/training-tutorials/systemd-services-beyond-starting-and-stopping/
+# Default Type=simple
+Type=notify
+Restart=always
+TimeoutStopSec=5
+PrivateTmp=true
+KillSignal=SIGQUIT
+StandardError=syslog
+NotifyAccess=all
+StandardError=file:/tmp/gunicorn-errors.err
+StandardOutput=file:/tmp/gunicorn-output.log
+
+[Install]
+WantedBy=multi-user.target

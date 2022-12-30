@@ -1,0 +1,9 @@
+SECRET_KEY="django-insecure-aty2a&_tm9^pk3-3wct$!qlyne(bs5pa&jk60=yq7#xy@+@_jx"
+DJANGO_DEBUG=True
+DJANGO_ALLOWED_HOSTS="localhost"
+DATABASE_NAME=myEnrollmentDB
+DATABASE_USER=anel
+DATABASE_PASS=pass
+DATABASE_HOST=db
+JWT_PRIVATE_KEY=secret
+

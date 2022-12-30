@@ -1,0 +1,19 @@
+[Unit] 
+Description=gunicorn socket activation  
+Documentation= https://eacon.ba
+
+[Socket] 
+# We could have multiple streams
+# ListenStream= 4444  
+ListenStream=/run/gunicorn.sock
+# default false means AF_UNIX socket (same machine)
+# yes AF_INET
+Accept= false
+SocketMode= 777
+# gunicorn.service will inherit FD by socket activation,
+# no need  permissions for socket.
+# nginx will need permision
+SocketUser=www-data
+
+[Install] 
+WantedBy= sockets.target
