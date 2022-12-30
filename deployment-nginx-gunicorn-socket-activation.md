@@ -110,6 +110,8 @@ StandardOutput=file:/tmp/gunicorn-output.log
 [Install]
 WantedBy=multi-user.target
 ```
+- On the server I have created dedicated directory for environment files only
+- If we change env var, we have to stop socket and start daemon and service again
 - Enable the socket
 ```bash
 $ sudo systemctl enable gunicorn.socket
@@ -136,7 +138,9 @@ DATABASE_USER=anel
 SECRET_KEY=django-insecure-atyjk60=yq7#xy@+@_jx
 JWT_PRIVATE_KEY=whatever
 INVOCATION_ID=9e3962391
-DJANGO_ALLOWED_HOSTS=localhost
+# DJANGO_ALLOWED_HOSTS=localhost
+# Here must be server name too
+DJANGO_ALLOWED_HOSTS="localhost,51.15.114.199"
 APP_PATH=/home/anel/GitHub/school_enrollment/myEnrollment
 PROJECT_PATH=/home/anel/GitHub/school_enrollment
 USER=anel
@@ -163,7 +167,7 @@ $ sudo apt install nginx-core
 $ cat /etc/nginx/sites-available/gunicorn-nginx 
 server {
     listen 5000;
-    server_name localhost;
+    server_name 51.15.114.199;
     location = /favicon.ico { access_log off; log_not_found off; }
 
     location / {
@@ -173,7 +177,7 @@ server {
 ```
 - Create symlink with full path to `sites-enabled`
 ```bash
-$ ln -s /etc/nginx/sites-available/gunicorn-nginx /etc/nginx/sites-enabled/gunicorn-nginx
+$ sudo ln -s /etc/nginx/sites-available/gunicorn-nginx /etc/nginx/sites-enabled/gunicorn-nginx
 $ ls -la /etc/nginx/sites-enabled/|grep gunicorn
 lrwxrwxrwx 1 root root   41 Dec 30 01:01 gunicorn-nginx -> /etc/nginx/sites-available/gunicorn-nginx
 ```
