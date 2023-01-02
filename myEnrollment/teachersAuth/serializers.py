@@ -5,7 +5,7 @@ import django.contrib.auth
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = ['id', 'name', 'email', 'password']
+        fields = ['id', 'first_name', 'last_name', 'email', 'password']
         # Hide password return (for each field)
         extra_kwargs={
             'password':{'write_only':True}

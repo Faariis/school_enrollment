@@ -7,21 +7,56 @@ from .models import Teacher
 import jwt, datetime
 import myEnrollment.settings as api_settings
 
+def get_teacher_id_from_jwt(request, jwt_name='jwt'):
+    # get cookie and from cookie retrieve the user
+    token = request.COOKIES.get(str(jwt_name))
+    # decode it to get the user
+    if not token:
+        raise AuthenticationFailed("Unauthenticated access")
+    try:
+        payload= jwt.decode(token, api_settings.JWT_PRIVATE_KEY, algorithms=['HS256'])
+    except jwt.ExpiredSignatureError:
+        raise AuthenticationFailed("Unauthenticated access")
+    teacher= Teacher.objects.get(id= payload['id'])
+    return teacher
+
 # Create your views here.
 class RegisterView(APIView):
     # get and post function in APIView
+    def get(self, request):
+        teacher= get_teacher_id_from_jwt(request, 'jwt')
+        if teacher.is_superuser == 0:
+            return Response({"message": "Current user is not super user. Registration not allowed!"})
+        print("GET: ", teacher)
+
+        # It should show all teaches from database to delete/update
+        teachers= Teacher.objects.all()
+        serializer = TeacherSerializer(teachers, many=True)
+        return Response(serializer.data)
+
     def post(self, request):
+        current_user = request.user
+        # if current_user.is_authenticated:
+        #     # Registration can be done only by super admin
+        #     if current_user.is_superuser == 0:
+        #         return Response({"message": "Current user is not super user. Registration not allowed!"})
+        # else:
+        #     return Response({"message": "AnonymousUser not allowed!"})
+        teacher= get_teacher_id_from_jwt(request, 'jwt')
+        print(teacher)
+        if teacher.is_superuser == 0:
+            return Response({"message": "Current user is not super user. Registration not allowed!"})
+        # Here we know current_user is super user and can proceed
         # To create the user first create serializer.py 
         serializer= TeacherSerializer(data= request.data)
         serializer.is_valid( raise_exception= True)
         serializer.save()
         # return it, to test it install postman
         return Response(serializer.data)
-        # pass
 
 class LoginView(APIView):
     def post(self, request):
-        # Handle anonymous use - not needed, will be done on frontend
+        # Handle anonymous use - not needed, all authentication will be done on frontend
         email= request.data['email']
         password= request.data['password']
 
@@ -55,17 +90,7 @@ class LoginView(APIView):
 
 class TeacherView(APIView):
     def get(self, request):
-        # get cookie and from cookie retrieve the user
-        token = request.COOKIES.get('jwt')
-        # decode it to get the user
-        if not token:
-            raise AuthenticationFailed("Unauthenticated access")
-        try:
-            payload= jwt.decode(token, api_settings.JWT_PRIVATE_KEY, algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed("Unauthenticated access")
-        
-        teacher= Teacher.objects.get(id= payload['id'])
+        teacher= get_teacher_id_from_jwt(request, 'jwt')
         serializer= TeacherSerializer(teacher)
         return Response(serializer.data)
 
