@@ -4,6 +4,20 @@ from django_countries.fields import CountryField
 from django.core.mail import send_mail
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser, AbstractUser # AbstractUser, AbstractBaseUser
 
+
+from django.contrib.auth import user_login_failed, user_logged_in
+from django.contrib.auth.models import update_last_login
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+def update_last_and_previous_login(sender, user, **kwargs):
+    user.previous_login = user.last_login
+    user.last_login = timezone.now()
+    user.save(update_fields=["previous_login", "last_login"])
+
+user_logged_in.disconnect(update_last_login, dispatch_uid="update_last_login")
+user_logged_in.connect(update_last_and_previous_login, dispatch_uid="update_last_and_previous_login")
+
 # We need to add username as required field in order to create the superuser on CLI
 # Because of that we have to override create_superuser()
 class CustomUserManager(BaseUserManager):
@@ -25,7 +39,6 @@ class CustomUserManager(BaseUserManager):
         # tested we still have to do in serializer - I guess this is related
         # to saving user from admin ?
         user.set_password(password)
-        #user.profile_picture = profile_picture
         user.save(using=self._db)
         return user
 
@@ -53,6 +66,8 @@ class Teacher(AbstractUser):
     country= CountryField(default='BA')
     email= models.CharField(max_length = 50, unique= True)
     password= models.CharField(max_length = 255)
+    canton= models.CharField(max_length=3, default='ZDK')
+    previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
     objects = CustomUserManager()
 
     # We want that Django logs in with email and password
