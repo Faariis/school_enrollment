@@ -24,6 +24,13 @@ Transparent enrollment of students in public/private schools and univerisites.
     ```bash
     [{"id":1,"first_name":"Anel","last_name":"Husakovic","email":"anel@eacon.ba"},{"id":4,"first_name":"teache3 - used by superuser","last_name":"","email":"t3@t"},{"id":2,"first_name":"teacher1","last_name":"","email":"teacher1@t"},{"id":3,"first_name":"teacher2","last_name":"","email":"teacher2@t"}]
     ```
+    - **Task**: in this case (for `super user` only ) we have to have 2 buttons:
+      - `Delete` - when this button is clicked it will ask for confirmation of actio
+                   to delete the teacher. If yes frontened should send request to
+                   `/api/teacher/delete/<int:pk>`.
+                   It will remove the teacher and generate the message.
+      - `Update` - This button should update the teacher. It should go to route
+                   `/api/teacher/update/<int:pk>`
   - If it is not logged in as a super user, error
     ```bash
     {"message":"Current user is not super user. Registration not allowed!"}
@@ -56,3 +63,9 @@ Transparent enrollment of students in public/private schools and univerisites.
       "message": "success"
     }
     ```
+5. `/api/teacher/update/<int:pk>`
+  - Meaning of this route is that super user or current teacher can see the basic
+    information about that teacher.
+  - In case of `super user`, on this route there will be 2 buttons `Delete teacher`
+
+6. `/api/teacher/delete/<int:pk>`
