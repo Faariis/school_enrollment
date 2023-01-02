@@ -7,6 +7,19 @@ from .models import Teacher
 import jwt, datetime
 import myEnrollment.settings as api_settings
 
+class ApiOverview(APIView):
+    def get(self, request):
+        api_urls = {
+            'all teachers': '/',
+            'Search by teachers first_name': '/?first_name=first_name',
+            'Search by teachers last_name': '/?last_name=last_name',
+            'Search by teachers canton': '/?canton=canton',
+            'Add teacher': '/teacher/register',
+            'Update teacher': '/teacher/update/pk',
+            'Delete teacher': '/teacher/delete/pk'
+        }
+        return Response(api_urls)
+
 def get_teacher_id_from_jwt(request, jwt_name='jwt'):
     # get cookie and from cookie retrieve the user
     token = request.COOKIES.get(str(jwt_name))

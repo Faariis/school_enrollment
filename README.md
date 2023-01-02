@@ -6,6 +6,8 @@ Transparent enrollment of students in public/private schools and univerisites.
 - This app should support login,logout and registration of teachers and CRUD operations
 - Only super admin can register and delete teachers (and update)
 - Teachers can update their profiles (todo whcih route?)
+0. `/api/`
+  - This should show all routes
 1. `/api/login`
   - Api doesn't handle empty `email` and `password` it is expected to be there
   - If user doesn't exist, incorrect password
