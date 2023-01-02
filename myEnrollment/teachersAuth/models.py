@@ -39,6 +39,7 @@ class CustomUserManager(BaseUserManager):
         # tested we still have to do in serializer - I guess this is related
         # to saving user from admin ?
         user.set_password(password)
+        update_last_and_previous_login(None, user)
         user.save(using=self._db)
         return user
 

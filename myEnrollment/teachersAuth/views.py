@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from .serializers import TeacherSerializer
-from .models import Teacher
+from .models import Teacher, update_last_and_previous_login
 import jwt, datetime
 import myEnrollment.settings as api_settings
 
@@ -92,7 +92,7 @@ class LoginView(APIView):
         # secret can be as env var or can be in payload
         # no need for .decode('utf-8')
         token= jwt.encode(payload, api_settings.JWT_PRIVATE_KEY, algorithm="HS256")
-        
+        update_last_and_previous_login(None, teacher)
         response= Response()
         # We don't want frontend to access token so httponly
         response.set_cookie(key='jwt', value=token, httponly=True)
