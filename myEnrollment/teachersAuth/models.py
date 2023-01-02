@@ -61,6 +61,10 @@ class Teacher(AbstractUser):
         verbose_name = ('Nastavnik')
         verbose_name_plural = ('Nastavnici')
         ordering = ['email']
+        constraints = [
+            #models.CheckConstraint(check=models.Q(age__gte=18), name='age_gte_18'),
+            models.UniqueConstraint(fields=['id','email'], name='composite-pk-id-email')
+        ]
     # Django by default creates username as unique and as USERNAME_FIELD, we have to override it
     username= None
     country= CountryField(default='BA')
