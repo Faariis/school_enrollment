@@ -132,11 +132,11 @@ PASSWORD_HASHERS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Sarajevo'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -156,4 +156,4 @@ CORS_ORIGIN_ALLOW_ALL= True
 we login with cookies and return the cookie,
 if not set, our frontend will not be able to see the cookies
 """
-CORS_ALLOW_CREDENTIALS= True 
+CORS_ALLOW_CREDENTIALS= True
