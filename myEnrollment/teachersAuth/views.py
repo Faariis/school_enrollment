@@ -6,6 +6,7 @@ from .serializers import TeacherSerializer
 from .models import Teacher, update_last_and_previous_login
 import jwt, datetime
 import myEnrollment.settings as api_settings
+from rest_framework.parsers import JSONParser
 
 class ApiOverview(APIView):
     def get(self, request):
@@ -68,47 +69,53 @@ class RegisterView(APIView):
         return Response(serializer.data)
 
 class LoginView(APIView):
-    def get(self, request):
-        login_user= get_teacher_id_from_jwt(request, 'jwt')
-        if login_user:
-            return Response({"message":"Successfully logged in"})
-        return Response({"message":"User not logged in"})
     def post(self, request):
         # Handle anonymous use - not needed, all authentication will be done on frontend
         # email= request.POST.get('email', None)
-        email= request.data['email']
-        if email is None:
-            return Response({"message":"email cannot be none"})
-        password= request.data['password']
-        if password is None:
-            return Response({"message":"password cannot be none"})
-        # teacher= Teacher.objects.get(email= email, password= password)
-        # Since email is unique
-        teacher= Teacher.objects.filter(email= email).first()
-        #teacher= Teacher.objects.get(email= email) < returns single instance only
-        if teacher is None:
-            raise AuthenticationFailed('User not found!')
-        
-        # This function is also provided by djanog
-        if not teacher.check_password(password):
-            raise AuthenticationFailed('Incorrect password')
-        # Payload is set of claims
-        payload= {
-            'id': teacher.id,
-            'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60),
-            'iat': datetime.datetime.utcnow(),
-        }
-        # secret can be as env var or can be in payload
-        # no need for .decode('utf-8')
-        token= jwt.encode(payload, api_settings.JWT_PRIVATE_KEY, algorithm="HS256")
-        update_last_and_previous_login(None, teacher)
-        response= Response()
-        # We don't want frontend to access token so httponly
-        response.set_cookie(key='jwt', value=token, httponly=True)
-        response.data= {
-            'jwt':token
-        }
-        return response
+        # if request.content_type.startswith("application/json"):
+        #     try:
+        #         import json
+        #         from django.http import QueryDict
+        #         json_str = request.body.decode('utf-8')
+        #         json_dict = json.loads(json_str)
+        #         query_dict = QueryDict(mutable=True)
+        #         for key in json_dict.keys():
+        #             query_dict[key] = json_dict[key]
+        #         request.POST = query_dict
+        #     except Exception as ex:
+        #         pass
+        teacherData = JSONParser().parse(request)
+        serializer= TeacherSerializer(data=teacherData)
+        if serializer.is_valid():
+            email = serializer.validated_data["email"]
+            password = serializer.validated_data["password"]
+            # teacher= Teacher.objects.get(email= email, password= password)
+            # Since email is unique
+            teacher= Teacher.objects.filter(email= email).first()
+            #teacher= Teacher.objects.get(email= email) < returns single instance only
+            if teacher is None:
+                raise AuthenticationFailed('User not found!')
+            
+            # This function is also provided by djanog
+            if not teacher.check_password(password):
+                raise AuthenticationFailed('Incorrect password')
+            # Payload is set of claims
+            payload= {
+                'id': teacher.id,
+                'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60),
+                'iat': datetime.datetime.utcnow(),
+            }
+            # secret can be as env var or can be in payload
+            # no need for .decode('utf-8')
+            token= jwt.encode(payload, api_settings.JWT_PRIVATE_KEY, algorithm="HS256")
+            update_last_and_previous_login(None, teacher)
+            response= Response()
+            # We don't want frontend to access token so httponly
+            response.set_cookie(key='jwt', value=token, httponly=True)
+            response.data= {
+                'jwt':token
+            }
+            return response
 
 class TeacherView(APIView):
     def get(self, request):
