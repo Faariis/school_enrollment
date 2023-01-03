@@ -68,11 +68,20 @@ class RegisterView(APIView):
         return Response(serializer.data)
 
 class LoginView(APIView):
+    def get(self, request):
+        login_user= get_teacher_id_from_jwt(request, 'jwt')
+        if login_user:
+            return Response({"message":"Successfully logged in"})
+        return Response({"message":"User not logged in"})
     def post(self, request):
         # Handle anonymous use - not needed, all authentication will be done on frontend
+        # email= request.POST.get('email', None)
         email= request.data['email']
+        if email is None:
+            return Response({"message":"email cannot be none"})
         password= request.data['password']
-
+        if password is None:
+            return Response({"message":"password cannot be none"})
         # teacher= Teacher.objects.get(email= email, password= password)
         # Since email is unique
         teacher= Teacher.objects.filter(email= email).first()
