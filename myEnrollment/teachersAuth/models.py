@@ -44,7 +44,6 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, first_name, last_name, password=None, **extra_fields):
-        extra_fields.setdefault('is_superuser', True)
         user = self.model(
             first_name= first_name,
             last_name= last_name,
@@ -52,6 +51,9 @@ class CustomUserManager(BaseUserManager):
             email=self.normalize_email(email),
             **extra_fields
         )
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -102,3 +104,19 @@ class Teacher(AbstractUser):
         Sends an email to this User.
         '''
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return True
