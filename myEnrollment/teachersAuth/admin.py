@@ -1,82 +1,41 @@
-from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.core.exceptions import ValidationError
-
 from .models import Teacher
 
 
-class UserCreationForm(forms.ModelForm):
-    """A form for creating new users. Includes all the required
-    fields, plus a repeated password."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
-
-    class Meta:
-        model = Teacher
-        fields = ('email',)
-
-    def clean_password2(self):
-        # Check that the two password entries match
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Passwords don't match")
-        return password2
-
-    def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
-
-
-class UserChangeForm(forms.ModelForm):
-    """A form for updating users. Includes all the fields on
-    the user, but replaces the password field with admin's
-    disabled password hash display field.
-    """
-    password = ReadOnlyPasswordHashField()
-
-    class Meta:
-        model = Teacher
-        fields = ('email', 'password','first_name','last_name', 'is_active')
-
-
-class UserAdmin(BaseUserAdmin):
-    # The forms to add and change user instances
-    form = UserChangeForm
-    add_form = UserCreationForm
-
+class MyUserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email',)
-    list_filter = ('is_superuser',)
-    fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name','last_name')}),
-        ('Permissions', {'fields': ('is_superuser',)}),
-    )
+    # This will show columns to display
+    list_display = ('email','first_name', 'last_name', 'canton', 'previous_login',
+                    'last_login','is_staff','is_active','country','date_joined')
+    search_fields=('email', 'first_name')
+    readonly_fields=('date_joined','last_login','previous_login')
+    filter_horizontal = ()
+    list_filter= ('last_login','canton') #by school
+    ordering = ('email',)
+    model= Teacher
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2'),
+    add_fieldsets=(
+        ('Personal info', {
+            'classes': ('wide', 'extrapretty',), #there is collapse
+            'fields': ('first_name','last_name',('canton','country')) #display multiple fields in the same line
         }),
+        ('Login info', {
+            'description':("This is mandatory"),
+            'classes': ('wide',),
+            'fields': ('email',
+                       'password1','password2', )
+            }),
+        ('Permissions', {'fields': ('is_staff',)}),
     )
-    search_fields = ('email',)
-    ordering = ('email',)
-    filter_horizontal = ()
-
+    fieldsets=()
 
 # Now register the new UserAdmin...
-admin.site.register(Teacher, UserAdmin)
+admin.site.register(Teacher, MyUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
