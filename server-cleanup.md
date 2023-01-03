@@ -423,3 +423,42 @@ https://www.shubhamdipt.com/blog/how-to-create-a-systemd-service-in-linux/
 # How to setup Gunicorn with binding to socket in this directory that will nginx use, that is safer and faster than network port
 
 https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
+
+
+### NGINX configuration
+- Serving static files
+```bash
+$ ./manage.py collectstatic # this will create in root/static folder
+```
+- In django 4.x there was need to add some new env vars, se we added them,
+and changed the configuration
+```bash
+# Env vars in settings.py
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+CSRF_TRUSTED_ORIGINS = ['http://51.15.114.199','http://*.127.0.0.1']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+$ cat /etc/nginx/sites-available/gunicorn-nginx 
+server {
+    listen 3534;
+    server_name 51.15.114.199;
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location / {
+        proxy_pass http://unix:/run/gunicorn.sock;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';	
+       }
+    location /static/ {
+        root /home/anel/actions-runner/_work/school_enrollment/school_enrollment/myEnrollment/;
+    	}
+    }
+
+
+# Reload new configuration
+$ sudo systemctl restart nginx && sudo systemctl daemon-reload
+```
