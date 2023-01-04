@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'teachersAuth',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,18 @@ we login with cookies and return the cookie,
 if not set, our frontend will not be able to see the cookies
 """
 CORS_ALLOW_CREDENTIALS= True
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+# JWTStatelessUserAuthentication
+# JWTTokenUserAuthentication
+# https://django-rest-framework-simplejwt.readthedocs.io/en/latest/stateless_user_authentication.html#jwtstatelessuserauthentication-backend
