@@ -35,6 +35,7 @@ def get_teacher_id_from_jwt(request, jwt_name='jwt'):
 
 # Create your views here.
 class RegisterView(APIView):
+    # authentication_header_prefix = 'Token'
     # get and post function in APIView
     def get(self, request):
         teacher= get_teacher_id_from_jwt(request, 'jwt')

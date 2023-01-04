@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import django
+from django.utils.encoding import smart_str
+django.utils.encoding.smart_text = smart_str
+from django.utils.translation import gettext_lazy as ugettext
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -158,3 +162,20 @@ we login with cookies and return the cookie,
 if not set, our frontend will not be able to see the cookies
 """
 CORS_ALLOW_CREDENTIALS= True
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        'rest_framework.permissions.AllowAny',
+        "rest_framework.permissions.IsAuthenticated",
+        #"rest_framework.permissions.IsAdminUser",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
+        #"dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ),
+}
+
+
+# See: https://jpadilla.github.io/django-rest-framework-jwt/
