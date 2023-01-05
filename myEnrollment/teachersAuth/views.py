@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, ListCreateAPIView
 from rest_framework import status
 
 from .serializers import TeacherLoginSerializer
@@ -33,36 +33,32 @@ class ApiOverview(APIView):
         }
         return Response(api_urls)
 
-class TeacherLoginView(RetrieveAPIView): #RetrieveAPIView)
-    permission_classes = (IsAuthenticated,)
-    # lookup_field = "pk"
-    # queryset=Teacher.objects.all()
-    serializer_class = TeacherLoginSerializer
-    #import pdb
-    #pdb.set_trace()
-    # def get_queryset(self):
-    #     return Teacher.objects.all()
+#
+# view for listing a queryset. ListAPIView
+# view for retrieving a model instance. RetrieveAPIView
+# retrieving, updating a model instance. RetrieveUpdateAPIView
+# listing a queryset or creating a model instance. ListCreateAPIView
+# retrieving, updating or deleting a model instance. RetrieveUpdateDestroyAPIView
 
-    # def get(self, request, *args, **kwargs):
-    #     serializer= self.serializer(data=request.user)
-    #     serializer.is_valid(raise_exception= True)
-    #     status_code = status.HTTP_200_OK
-    #     response={
-    #         'success':'True',
-    #         'status_code': status_code,
-    #         'message': 'Teacher logged in  successfully',
-    #         'token' : serializer.data['jwt_token'],
-    #     }
-    #     return Response(response, status= status_code)
+class TeacherLoginView(RetrieveAPIView): 
+    permission_classes = (IsAuthenticated,)
+    lookup_field = "id"
+    queryset=Teacher.objects.all()
+    serializer_class = TeacherLoginSerializer
 
     def get_object(self):
-        print(self.request.user)
         return self.request.user
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #     # make sure to catch 404's below
-    #     obj = queryset.get(id=self.request.user.id)
-    #     self.check_object_permissions(self.request, obj)
-    #     return obj
+
+class TeachersList(ListCreateAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherLoginSerializer
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = TeacherLoginSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class LogoutView(APIView):
     def post(self, request):
