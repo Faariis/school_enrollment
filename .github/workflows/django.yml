@@ -59,7 +59,12 @@ jobs:
         # Load enviornment variables
         source .server_env
         # Create static folder, so nginx could serve for /admin page
-        ./manage.py collectstatic
+        cd myEnrollment
+        ls -la
+        # It will execute part related to github actions in settings. 
+        # New secerts GITHUB_ related are needed.
+        # It can be done in systemd scripts.
+        python manage.py collectstatic
    # - name: Run Tests
    #   run: |
    #     python manage.py test

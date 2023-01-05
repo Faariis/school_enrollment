@@ -86,10 +86,10 @@ if os.getenv('GITHUB_WORKFLOW'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'github_actions',
-            'USER': os.environ['GITHUB_DB_USER'],
-            'PASSWORD':os.environ['GITHUB_DB_PASS'],
-            'HOST': os.environ['GITHUB_DB_HOST']
+            'NAME': os.environ.get('DATABASE_NAME'), # we could use other GITHUB_secrets
+            'USER': os.environ['DATABASE_USER'],
+            'PASSWORD':os.environ['DATABASE_PASS'],
+            # 'HOST': os.environ['GITHUB_DB_HOST']
         }
     }
 else:
