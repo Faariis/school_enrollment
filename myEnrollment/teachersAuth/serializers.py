@@ -1,23 +1,35 @@
 
 
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from .models import Teacher
 import django.contrib.auth
 
+class TeacherLoginSerializer(serializers.Serializer):
+    class Meta:
+        model= get_user_model()
+        fields=('id', 'is_staff', 'first_name', 'last_name')
+
+'''
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
 
-class TeacherLoginSerializer(serializers.Serializer):
+# Not used -  for testing purpose
+class TeacherLoginPostSerializer(serializers.Serializer):
 
     email = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
 
     def validate(self, data):
+        # If we send data as in get method -> we are going to get
+        # here Teacher and not dictionary and will get an error.
+        # This maybe good for POST data
+        import pdb
+        pdb.set_trace()
         email = data.get("email", None)
         password = data.get("password", None)
         user = authenticate(email=email, password=password)
@@ -38,6 +50,8 @@ class TeacherLoginSerializer(serializers.Serializer):
             'jwt_token': jwt_token
         }
     
+'''
+
 '''
 # Not used
 

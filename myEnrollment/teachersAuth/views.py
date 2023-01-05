@@ -1,16 +1,19 @@
 import django
 from django.utils.encoding import smart_str
 django.utils.encoding.smart_text = smart_str
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext_lazy as g4
+django.utils.translation.ugettext_lazy= g4
+django.utils.translation.ugettext= g4
+
+#from django.utils.translation import ugettext, ugettext_lazy as _
 # https://stackoverflow.com/questions/71420362/django4-0-importerror-cannot-import-name-ugettext-lazy-from-django-utils-tra
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .serializers import TeacherLoginSerializer
 from .models import Teacher, update_last_and_previous_login
@@ -30,36 +33,36 @@ class ApiOverview(APIView):
         }
         return Response(api_urls)
 
-def get_teacher_id_from_jwt(request, jwt_name='jwt'):
-    # get cookie and from cookie retrieve the user
-    token = request.COOKIES.get(str(jwt_name))
-    # decode it to get the user
-    if not token:
-        raise AuthenticationFailed("Unauthenticated access")
-    try:
-        payload= jwt.decode(token, api_settings.JWT_PRIVATE_KEY, algorithms=['HS256'])
-    except jwt.ExpiredSignatureError:
-        raise AuthenticationFailed("Unauthenticated access")
-    teacher= Teacher.objects.get(id= payload['id'])
-    return teacher
-
-class TeacherLoginView(RetrieveAPIView):
-    authentication_classes = (JSONWebTokenAuthentication, )
-    permission_classes = (AllowAny,)
-    lookup_field = "id"
-    queryset=Teacher.objects.all()
+class TeacherLoginView(RetrieveAPIView): #RetrieveAPIView)
+    permission_classes = (IsAuthenticated,)
+    # lookup_field = "pk"
+    # queryset=Teacher.objects.all()
     serializer_class = TeacherLoginSerializer
-    def get(self, request):
-        serializer= self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception= True)
-        status_code = status.HTTP_200_OK
-        response={
-            'success':'True',
-            'status_code': status_code,
-            'message': 'Teacher logged in  successfully',
-            'token' : serializer.data['jwt_token'],
-        }
-        return Response(response, status= status_code)
+    #import pdb
+    #pdb.set_trace()
+    # def get_queryset(self):
+    #     return Teacher.objects.all()
+
+    # def get(self, request, *args, **kwargs):
+    #     serializer= self.serializer(data=request.user)
+    #     serializer.is_valid(raise_exception= True)
+    #     status_code = status.HTTP_200_OK
+    #     response={
+    #         'success':'True',
+    #         'status_code': status_code,
+    #         'message': 'Teacher logged in  successfully',
+    #         'token' : serializer.data['jwt_token'],
+    #     }
+    #     return Response(response, status= status_code)
+
+    def get_object(self):
+        print(self.request.user)
+        return self.request.user
+    #     queryset = self.filter_queryset(self.get_queryset())
+    #     # make sure to catch 404's below
+    #     obj = queryset.get(id=self.request.user.id)
+    #     self.check_object_permissions(self.request, obj)
+    #     return obj
 
 class LogoutView(APIView):
     def post(self, request):
