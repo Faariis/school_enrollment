@@ -58,6 +58,8 @@ jobs:
         python3 -m pip install -r requirements.txt
         # Load enviornment variables
         source .server_env
+        # Create static folder, so nginx could serve for /admin page
+        ./manage.py collectstatic
    # - name: Run Tests
    #   run: |
    #     python manage.py test
