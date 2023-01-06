@@ -185,7 +185,7 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=2),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "SIGNING_KEY": SECRET_KEY,
-    "AUTH_HEADER_TYPES": ("JWT",),
+    "AUTH_HEADER_TYPES": ("JWT","Bearer"),
     # "Bearer <Token>"
 }
 # JWTStatelessUserAuthentication

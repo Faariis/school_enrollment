@@ -59,12 +59,30 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+####  ----------------- MODELS -----------------
+class PrimarySchools(models.Model):
+    ps_name= models.CharField(max_length=100, default='Tehnicka skola Zenica', unique=True)
+    ps_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
+    class Meta:
+        db_table= 'primarySchools'
+
+class Canton(models.Model):
+    _canton_code= models.CharField(max_length=3, default='ZDK', primary_key=True)
+    canton_name= models.CharField(max_length=50, default='Zenicko-dobojski')
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
+    class Meta:
+        db_table= 'cantons'
+
 # Create your models here.
 class Teacher(AbstractUser):
     class Meta:
         verbose_name = ('Nastavnik')
         verbose_name_plural = ('Nastavnici')
         ordering = ['email']
+        db_table= 'teachers'
         constraints = [
             #models.CheckConstraint(check=models.Q(age__gte=18), name='age_gte_18'),
             models.UniqueConstraint(fields=['id','email'], name='composite-pk-id-email')
@@ -74,7 +92,12 @@ class Teacher(AbstractUser):
     country= CountryField(default='BA')
     email= models.CharField(max_length = 50, unique= True)
     password= models.CharField(max_length = 255)
-    canton= models.CharField(max_length=3, default='ZDK')
+    # to_field by default field they refernce (_canton_code)
+    canton_code= models.ForeignKey(Canton, default='ZDK',
+                                   on_delete=models.CASCADE)
+    ps_id= models.ForeignKey(PrimarySchools, to_field='ps_name',
+                             default='Tehnicka skola Zenica',
+                             on_delete=models.CASCADE)
     previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
     objects = CustomUserManager()
 
@@ -83,6 +106,7 @@ class Teacher(AbstractUser):
     EMAIL_FIELD= 'email'
     # Required fields is used by createsuperuser(), no need for username_field and password
     # AbstractUser has fields which we can use for superuser()
+    # If canton_code is added, in CLI it is expecting object instance.
     REQUIRED_FIELDS = ['first_name','last_name']
     def __str__(self):
         return f'{self.email}'

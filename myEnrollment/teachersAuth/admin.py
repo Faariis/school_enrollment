@@ -9,12 +9,12 @@ class MyUserAdmin(BaseUserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     # This will show columns to display
-    list_display = ('email','first_name', 'last_name', 'canton', 'previous_login',
+    list_display = ('email','first_name', 'last_name', 'previous_login',
                     'last_login','is_staff','is_active','country','date_joined')
     search_fields=('email', 'first_name')
     readonly_fields=('date_joined','last_login','previous_login')
     filter_horizontal = ()
-    list_filter= ('last_login','canton') #by school
+    list_filter= ('last_login',) #by school
     ordering = ('email',)
     model= Teacher
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -22,7 +22,7 @@ class MyUserAdmin(BaseUserAdmin):
     add_fieldsets=(
         ('Personal info', {
             'classes': ('wide', 'extrapretty',), #there is collapse
-            'fields': ('first_name','last_name',('canton','country')) #display multiple fields in the same line
+            'fields': ('first_name','last_name',('country')) #display multiple fields in the same line
         }),
         ('Login info', {
             'description':("This is mandatory"),
