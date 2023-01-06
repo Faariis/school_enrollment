@@ -2,7 +2,7 @@ from django.db import models
 # Followed the tutorial https://www.youtube.com/watch?v=PUzgZrS_piQ&list=PLlameCF3cMEu-LbsQYUDUVkiZ2jc2rpLx
 from django_countries.fields import CountryField
 from django.core.mail import send_mail
-from django.contrib.auth.models import BaseUserManager,AbstractBaseUser, AbstractUser # AbstractUser, AbstractBaseUser
+from django.contrib.auth.models import UserManager,BaseUserManager,AbstractBaseUser, AbstractUser # AbstractUser, AbstractBaseUser
 
 
 from django.contrib.auth import user_login_failed, user_logged_in
@@ -18,9 +18,13 @@ def update_last_and_previous_login(sender, user, **kwargs):
 user_logged_in.disconnect(update_last_login, dispatch_uid="update_last_login")
 user_logged_in.connect(update_last_and_previous_login, dispatch_uid="update_last_and_previous_login")
 
+class ExManager(models.Manager):
+    def get_queryset(self):
+        return super(ExManager, self).get_queryset().all()
+
 # We need to add username as required field in order to create the superuser on CLI
 # Because of that we have to override create_superuser()
-class CustomUserManager(BaseUserManager):
+class CustomUserManager(UserManager):
     #use_in_migrations = True
     def create_user(self, email, password=None, **extra_fields):
         """
@@ -72,7 +76,7 @@ class Canton(models.Model):
     _canton_code= models.CharField(max_length=3, default='ZDK', primary_key=True)
     canton_name= models.CharField(max_length=50, default='Zenicko-dobojski')
     def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%s" % (self._canton_code)
     class Meta:
         db_table= 'cantons'
 
@@ -99,8 +103,8 @@ class Teacher(AbstractUser):
                              default='Tehnicka skola Zenica',
                              on_delete=models.CASCADE)
     previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
-    objects = CustomUserManager()
-
+    objects = CustomUserManager() # objects is _default_manager, default models.Manager()
+    ab_ob= ExManager()
     # We want that Django logs in with email and password
     USERNAME_FIELD = 'email'
     EMAIL_FIELD= 'email'

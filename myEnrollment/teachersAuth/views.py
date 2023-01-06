@@ -50,7 +50,7 @@ class TeacherLoginView(RetrieveAPIView):
         return self.request.user
 
 class TeachersList(ListCreateAPIView):
-    queryset = Teacher.objects.all()
+    queryset = Teacher.ab_ob.all() # we use custom manager
     serializer_class = TeacherLoginSerializer
     permission_classes = [IsAuthenticated]
 
