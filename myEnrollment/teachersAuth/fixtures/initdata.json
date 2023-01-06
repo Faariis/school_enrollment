@@ -1,0 +1,28 @@
+[
+  {
+    "model": "teachersAuth.Teacher",
+    "pk": 1,
+    "fields": {
+      "first_name":"Anel",
+      "last_name":"Husakovic",
+      "email":"a@a",
+      "password":"a",
+      "canton": "SA",
+      "is_superuser":1,
+      "is_staff":1
+    }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk": 2,
+    "fields": {
+      "first_name":"Majra",
+      "last_name":"Husakovic",
+      "email":"m@m",
+      "password":"m",
+      "canton": "ZDK",
+      "is_superuser":1,
+      "is_staff":1
+    }
+  }
+]

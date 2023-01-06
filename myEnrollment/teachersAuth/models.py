@@ -65,6 +65,7 @@ class Teacher(AbstractUser):
         verbose_name = ('Nastavnik')
         verbose_name_plural = ('Nastavnici')
         ordering = ['email']
+        db_table= 'teachers'
         constraints = [
             #models.CheckConstraint(check=models.Q(age__gte=18), name='age_gte_18'),
             models.UniqueConstraint(fields=['id','email'], name='composite-pk-id-email')

@@ -10,3 +10,6 @@ class TeacherLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model= Teacher() # get_user_model()
         fields=('id', 'is_superuser', 'first_name', 'last_name')
+    def create(self, validated_data):
+        user = Teacher.objects.create_user(validated_data['email'], validated_data["password"])
+        return user
