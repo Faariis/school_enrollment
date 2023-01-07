@@ -9,6 +9,7 @@ from django.contrib.auth import user_login_failed, user_logged_in
 from django.contrib.auth.models import update_last_login
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MinValueValidator,MaxValueValidator
 
 def update_last_and_previous_login(sender, user, **kwargs):
     user.previous_login = user.last_login
@@ -64,23 +65,40 @@ class CustomUserManager(UserManager):
         return user
 
 ####  ----------------- MODELS -----------------
-class PrimarySchools(models.Model):
-    ps_name= models.CharField(max_length=100, default='Tehnicka skola Zenica', unique=True)
-    ps_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
-    def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
-    class Meta:
-        db_table= 'primarySchools'
-
 class Canton(models.Model):
     _canton_code= models.CharField(max_length=3, default='ZDK', primary_key=True)
     canton_name= models.CharField(max_length=50, default='Zenicko-dobojski')
+    country= CountryField(default='BA')
     def __str__(self):
         return "%s" % (self._canton_code)
     class Meta:
         db_table= 'cantons'
 
-# Create your models here.
+
+# class PrimarySchools(models.Model):
+#     ps_name= models.CharField(max_length=100, default='Edhem MUlabdic', unique=True)
+#     ps_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
+#     # School can belong to one canton
+#     ps_canton_code= models.OneToOneField(Canton, on_delete=models.CASCADE)
+#     def __str__(self):
+#         return "%s %s" % (self.first_name, self.last_name)
+#     class Meta:
+#         db_table= 'primarySchools'
+
+
+class SecondarySchool(models.Model):
+    school_name= models.CharField(max_length=100, default='Tehnicka skola Zenica', unique=True)
+    school_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
+    # Many schools can belong to one canton
+    school_canton_code= models.ForeignKey(Canton, default='ZDK',
+                                         on_delete=models.CASCADE,
+                                         related_name='school_canton')
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
+    class Meta:
+        db_table= 'secondarySchools'
+
+
 class Teacher(AbstractUser):
     class Meta:
         verbose_name = ('Nastavnik')
@@ -93,15 +111,14 @@ class Teacher(AbstractUser):
         ]
     # Django by default creates username as unique and as USERNAME_FIELD, we have to override it
     username= None
-    country= CountryField(default='BA')
-    email= models.CharField(max_length = 50, unique= True)
+    email= models.EmailField(max_length = 50, unique= True)
     password= models.CharField(max_length = 255)
-    # to_field by default field they refernce (_canton_code)
-    canton_code= models.ForeignKey(Canton, default='ZDK',
-                                   on_delete=models.CASCADE)
-    ps_id= models.ForeignKey(PrimarySchools, to_field='ps_name',
-                             default='Tehnicka skola Zenica',
-                             on_delete=models.CASCADE)
+    # There is no need to add canton of teacher,
+    # since if we know school it, we can get through canton using school_canton_code
+    # Many teachers can belong to single school
+    school_id= models.ForeignKey(SecondarySchool,
+                                 on_delete=models.CASCADE,
+                                 related_name='school_id')
     previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
     objects = CustomUserManager() # objects is _default_manager, default models.Manager()
     ab_ob= ExManager()
@@ -143,3 +160,12 @@ class Teacher(AbstractUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+
+# class Grade(models.Model):
+#     # ocjena moze biti null - vjeronauka
+#     ocjena= models.PositiveIntegerField(validators=[MinValueValidator(2), MaxValueValidator(5)], null=True)
+#     # we want to know which teacher inserted the grade
+#     nastavnik= models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name="grades")
+#     def __str__(self):
+#         return "%s - %s", str(self.ocjena), self.nastavnik.email_user
