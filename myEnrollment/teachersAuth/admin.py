@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Teacher
+from .models import Teacher, SecondarySchool, Canton
 
 
 class MyUserAdmin(BaseUserAdmin):
@@ -10,7 +10,7 @@ class MyUserAdmin(BaseUserAdmin):
     # that reference specific fields on auth.User.
     # This will show columns to display
     list_display = ('email','first_name', 'last_name', 'previous_login',
-                    'last_login','is_staff','is_active','country','date_joined')
+                    'last_login','is_staff','is_active','date_joined')
     search_fields=('email', 'first_name')
     readonly_fields=('date_joined','last_login','previous_login')
     filter_horizontal = ()
@@ -22,7 +22,7 @@ class MyUserAdmin(BaseUserAdmin):
     add_fieldsets=(
         ('Personal info', {
             'classes': ('wide', 'extrapretty',), #there is collapse
-            'fields': ('first_name','last_name',('country')) #display multiple fields in the same line
+            'fields': ('first_name','last_name') #display multiple fields in the same line with ()
         }),
         ('Login info', {
             'description':("This is mandatory"),
@@ -35,6 +35,8 @@ class MyUserAdmin(BaseUserAdmin):
     fieldsets=()
 
 # Now register the new UserAdmin...
+admin.site.register(Canton)
+admin.site.register(SecondarySchool)
 admin.site.register(Teacher, MyUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.

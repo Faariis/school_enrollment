@@ -12,12 +12,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.generics import RetrieveAPIView, ListCreateAPIView
-from rest_framework import status
+from rest_framework.generics import RetrieveAPIView, ListCreateAPIView, GenericAPIView
+from rest_framework import status, mixins
 
-from .serializers import TeacherLoginSerializer
-from .models import Teacher, update_last_and_previous_login
-import jwt, datetime
+from .serializers import TeacherLoginSerializer, SecondarySchoolSerializer, CantonSerializer 
+from .models import Teacher, SecondarySchool, Canton
 import myEnrollment.settings as api_settings
 
 class ApiOverview(APIView):
@@ -40,7 +39,7 @@ class ApiOverview(APIView):
 # listing a queryset or creating a model instance. ListCreateAPIView
 # retrieving, updating or deleting a model instance. RetrieveUpdateDestroyAPIView
 
-class TeacherLoginView(RetrieveAPIView): 
+class TeacherLoginView(RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
     lookup_field = "id"
     queryset=Teacher.objects.all()
@@ -59,6 +58,13 @@ class TeachersList(ListCreateAPIView):
         queryset = self.get_queryset()
         serializer = TeacherLoginSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class TeachersList2(mixins.ListModelMixin, GenericAPIView):
+    queryset= Teacher.objects.all()
+    serializer_class=TeacherLoginSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 class LogoutView(APIView):
     def post(self, request):

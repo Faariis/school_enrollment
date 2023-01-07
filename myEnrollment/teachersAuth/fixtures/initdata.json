@@ -1,14 +1,36 @@
 [
   {
-    "model": "teachersAuth.PrimarySchools",
-    "pk": 1,
+    "model": "teachersAuth.Canton",
     "fields": {}
   },
   {
     "model": "teachersAuth.Canton",
-    "pk": 1,
     "fields": {
-      "_canton_code": "ZDK"
+      "_canton_code": "SA",
+      "canton_name":"Sarajevski kanton"
+    }
+  },
+  {
+    "model": "teachersAuth.SecondarySchool",
+    "pk": 1,
+    "fields": {}
+  },
+  {
+    "model": "teachersAuth.SecondarySchool",
+    "pk": 2,
+    "fields": {
+      "school_canton_code":"ZDK",
+      "school_name":"Medicinska skola, Zenica",
+      "school_address":"Crkvice"
+    }
+  },
+  {
+    "model": "teachersAuth.SecondarySchool",
+    "pk": 3,
+    "fields": {
+      "school_canton_code":"SA",
+      "school_name":"Medicinska skola, Sarajevo",
+      "school_address":"Dobrinja"
     }
   },
   {
@@ -19,9 +41,35 @@
       "last_name":"Husakovic",
       "email":"a@a",
       "password":"a",
-      "canton_code": "ZDK",
       "is_superuser":1,
-      "is_staff":1
+      "is_staff":1,
+      "school_id":"1"
+    }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk":2,
+    "fields": {
+      "first_name":"Ismet",
+      "last_name":"Glumcevic",
+      "email":"i@i",
+      "password":"i",
+      "is_superuser":1,
+      "is_staff":1,
+      "school_id":1
+    }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk":3,
+    "fields": {
+      "first_name":"Test",
+      "last_name":"Test",
+      "email":"test@test",
+      "password":"test",
+      "is_superuser":0,
+      "is_staff":0,
+      "school_id":2
     }
   }
 ]
