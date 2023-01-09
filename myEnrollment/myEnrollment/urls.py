@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Include `urls` file from application
     # to accept all end-points of user
-    path('api/', include('teachersAuth.urls'))
+    path('api/', include('teachersAuth.urls')),
+    path('api/', include('secondarySchools.urls'))
 ]

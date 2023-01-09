@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'teachersAuth',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'secondarySchools'
 ]
 
 MIDDLEWARE = [

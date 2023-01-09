@@ -4,43 +4,14 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
-from .models import (
-                      Teacher,
-                      Canton,
-                      SecondarySchool,
-                      CoursesSecondarySchool
-                    )
+from teachersAuth.models import  Teacher
 
+from secondarySchools.serializers import  (
+                                            SecondarySchoolSerializer,
+                                            CoursesSecondarySchoolSerializer
+                                          )
 # Model serializer .create.update is automatically created compared to serializers.Serializer
 # There also exist serializers.HyperlinkedModelSerializer where instead of ID url is generated
-
-class CantonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= Canton
-        fields= "__all__"
-
-class CoursesSecondarySchoolSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= CoursesSecondarySchool
-        # fields= "__all__"
-        exclude=('school_id',)
-
-# Nested relations of serialiser https://www.django-rest-framework.org/api-guide/relations/#nested-relationships
-class SecondarySchoolSerializer(serializers.ModelSerializer):
-    # To get many teacher from this school. Variable name MUST be same as related_name
-    # read_only means that we cannot add cantons through post request
-    school_canton= CantonSerializer(read_only= True) # this will return all data about teacher
-    # To control what to show: __str__
-    # school_id= serializers.StringRelatedField(many=True) # this will return teacher.__str__
-    # school_id= serializers.PrimaryKeyRelatedField(many=True, ready_only=True) # returns only primary keys
-    # school_id= serializers.HyperlinkedRelatedField(many=True, ready_only=True, view_name="secondarySchools-detail") # view name: <model>-detail
-    # For above when using in get method qs=objects.all(), SecondarySchoolSerializer(qs, many=True, context={'request':request})
-    # What if there are multiple foreignkeys?
-    # school_id= serializers.HyperlinkedIdentityField(view_name='track-list') # used as link identity to id
-    class Meta:
-        model= SecondarySchool
-        fields= "__all__"
-        depth= 2
 
 
 class TeacherSerializer(serializers.ModelSerializer):

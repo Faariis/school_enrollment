@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Teacher, SecondarySchool, Canton
+from teachersAuth.models import Teacher
 
 
 class MyUserAdmin(BaseUserAdmin):
@@ -35,8 +35,6 @@ class MyUserAdmin(BaseUserAdmin):
     fieldsets=()
 
 # Now register the new UserAdmin...
-admin.site.register(Canton)
-admin.site.register(SecondarySchool)
 admin.site.register(Teacher, MyUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.

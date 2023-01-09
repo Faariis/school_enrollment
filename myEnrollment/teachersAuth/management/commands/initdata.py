@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand, call_command
-from  teachersAuth.models import Teacher # from yourapp.models import User # if you have a custom user
+from teachersAuth.models import Teacher # from yourapp.models import User # if you have a custom user
 
 
 class Command(BaseCommand):

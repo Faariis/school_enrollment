@@ -1,22 +1,22 @@
 [
   {
-    "model": "teachersAuth.Canton",
+    "model": "secondarySchools.Canton",
     "fields": {}
   },
   {
-    "model": "teachersAuth.Canton",
+    "model": "secondarySchools.Canton",
     "fields": {
       "_canton_code": "SA",
       "canton_name":"Sarajevski kanton"
     }
   },
   {
-    "model": "teachersAuth.SecondarySchool",
+    "model": "secondarySchools.SecondarySchool",
     "pk": 1,
     "fields": {}
   },
   {
-    "model": "teachersAuth.SecondarySchool",
+    "model": "secondarySchools.SecondarySchool",
     "pk": 2,
     "fields": {
       "school_canton_code":"ZDK",
@@ -25,7 +25,7 @@
     }
   },
   {
-    "model": "teachersAuth.SecondarySchool",
+    "model": "secondarySchools.SecondarySchool",
     "pk": 3,
     "fields": {
       "school_canton_code":"SA",
@@ -34,7 +34,7 @@
     }
   },
   {
-    "model": "teachersAuth.CoursesSecondarySchool",
+    "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "RTiA",
       "course_name":"Racunarska tehnika i automatika",
@@ -42,7 +42,7 @@
     }
   },
   {
-    "model": "teachersAuth.CoursesSecondarySchool",
+    "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "EL",
       "course_name":"Elektronicar telekomunikacija",
@@ -50,7 +50,7 @@
     }
   },
   {
-    "model": "teachersAuth.CoursesSecondarySchool",
+    "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "Mehatronika",
       "course_name":"Racunarska tehnika i automatika",
@@ -58,7 +58,7 @@
     }
   },
   {
-    "model": "teachersAuth.CoursesSecondarySchool",
+    "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "EL-meh",
       "course_name":"Elektronicar-mehanicar",
