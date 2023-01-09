@@ -94,7 +94,7 @@ class SecondarySchool(models.Model):
                                          on_delete=models.CASCADE,
                                          related_name='school_canton')
     def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%s - %s" % (self.school_name, self.school_canton_code)
     class Meta:
         db_table= 'secondarySchools'
 

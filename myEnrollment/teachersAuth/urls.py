@@ -1,8 +1,15 @@
 from django.urls import path
 from .views import (
     ApiOverview,
-    TeacherView,
     LogoutView,
+    SchoolView,
+    SchoolViewDetail,
+    SchoolCoursesListView,
+    SchoolCoursesCreateView,
+    CantonView,
+    CantonDetailView,
+    CantonSchoolView,
+    CantonSchoolDetailView,
     )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -14,7 +21,17 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name="logout"),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('school-list/', TeacherView.as_view(), name="teacher-list"),
+    path('canton/', CantonView.as_view(), name="canton-list"),
+    path('canton/<str:_canton_code>', CantonDetailView.as_view(), name="canton-detail"),
+
+    path('canton/schools/<str:canton_code>/', CantonSchoolView.as_view(), name="canton-school-list"),
+    path('canton/schools/<int:pk>', CantonSchoolDetailView.as_view(), name="canton-school-detail"),
+    
+    path('school-list/', SchoolView.as_view(), name="school-list"),
+    path('school-list/<int:pk>/', SchoolViewDetail.as_view(), name="school-detail"),
+    path('school-list/<int:pk>/course-create/', SchoolCoursesCreateView.as_view(), name="school-course-create"),
+    path('school-list/<int:pk>/courses/', SchoolCoursesListView.as_view(), name="school-course-list"),
+
     # path('school-list/<int:pk>/', TeacherLoginView.as_view(), name="teacher-list"),
     # path('teachers/', TeachersList.as_view(), name="teachers-info"),
     # # path('schools/<int:pk>', SchoolView.as_view(), name='secondarySchools-detail')

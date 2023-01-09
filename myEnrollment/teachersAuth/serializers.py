@@ -22,13 +22,14 @@ class CantonSerializer(serializers.ModelSerializer):
 class CoursesSecondarySchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model= CoursesSecondarySchool
-        fields= "__all__"
+        # fields= "__all__"
+        exclude=('school_id',)
 
 # Nested relations of serialiser https://www.django-rest-framework.org/api-guide/relations/#nested-relationships
 class SecondarySchoolSerializer(serializers.ModelSerializer):
     # To get many teacher from this school. Variable name MUST be same as related_name
     # read_only means that we cannot add cantons through post request
-    school_canton= CantonSerializer(many=True, read_only= True) # this will return all data about teacher
+    school_canton= CantonSerializer(read_only= True) # this will return all data about teacher
     # To control what to show: __str__
     # school_id= serializers.StringRelatedField(many=True) # this will return teacher.__str__
     # school_id= serializers.PrimaryKeyRelatedField(many=True, ready_only=True) # returns only primary keys
