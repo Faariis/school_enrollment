@@ -2,6 +2,7 @@
 Transparent enrollment of students in public/private schools and univerisites.
 
 ### Routes
+- For all routes see `APIOverview` go to: `api/`
 #### Authentication for users app teachersAuth
 - This app should support login,logout and registration of teachers and CRUD operations
 - Only super admin can register and delete teachers (and update)

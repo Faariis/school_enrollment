@@ -75,7 +75,7 @@ class Canton(models.Model):
         db_table= 'cantons'
 
 
-# class PrimarySchools(models.Model):
+# class StudentPrimarySchools(models.Model):
 #     ps_name= models.CharField(max_length=100, default='Edhem MUlabdic', unique=True)
 #     ps_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
 #     # School can belong to one canton
@@ -98,6 +98,26 @@ class SecondarySchool(models.Model):
     class Meta:
         db_table= 'secondarySchools'
 
+class CoursesSecondarySchool(models.Model):
+    three_year='III'
+    four_year='IV'
+    duration_choices=[
+        (three_year, 'Trogodisnje'),
+        (four_year, 'Cetverogodisnje')
+        ]
+    _course_code= models.CharField(primary_key=True, max_length=20)
+    course_name= models.CharField(max_length=100)
+    course_duration= models.CharField(max_length=10, choices= duration_choices, default=four_year)
+    school_id= models.ForeignKey(SecondarySchool, on_delete=models.CASCADE,
+                                 related_name='courses_secondary')
+    def __str__(self):
+        return self._course_code
+    class Meta:
+        db_table='courses_secondary'
+        constraints = [
+            models.UniqueConstraint(fields=['school_id','_course_code'],
+                                    name='composite-pk-school_id-course_code')
+        ]
 
 class Teacher(AbstractUser):
     class Meta:
@@ -107,10 +127,12 @@ class Teacher(AbstractUser):
         db_table= 'teachers'
         constraints = [
             #models.CheckConstraint(check=models.Q(age__gte=18), name='age_gte_18'),
-            models.UniqueConstraint(fields=['id','email'], name='composite-pk-id-email')
+            models.UniqueConstraint(fields=['id','email', 'course_code'],
+                                    name='composite-pk-id-email-course')
         ]
     # Django by default creates username as unique and as USERNAME_FIELD, we have to override it
     username= None
+    # It must be unique since it is USERNAME_FIELD, but we want to allow multiple records in table
     email= models.EmailField(max_length = 50, unique= True)
     password= models.CharField(max_length = 255)
     # There is no need to add canton of teacher,
@@ -119,6 +141,9 @@ class Teacher(AbstractUser):
     school_id= models.ForeignKey(SecondarySchool,
                                  on_delete=models.CASCADE,
                                  related_name='school_id')
+    course_code= models.ForeignKey(CoursesSecondarySchool,
+                                 on_delete=models.CASCADE,
+                                 related_name='course_code')
     previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
     objects = CustomUserManager() # objects is _default_manager, default models.Manager()
     ab_ob= ExManager()
@@ -161,6 +186,9 @@ class Teacher(AbstractUser):
         # Simplest possible answer: Yes, always
         return True
 
+
+# Since USERNAME is email is unique I cannot add multiple records of email/courses
+# but can do authentication https://stackoverflow.com/questions/31370118/multiple-username-field-in-django-user-model
 
 # class Grade(models.Model):
 #     # ocjena moze biti null - vjeronauka

@@ -4,7 +4,12 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
-from .models import Teacher, Canton, SecondarySchool
+from .models import (
+                      Teacher,
+                      Canton,
+                      SecondarySchool,
+                      CoursesSecondarySchool
+                    )
 
 # Model serializer .create.update is automatically created compared to serializers.Serializer
 # There also exist serializers.HyperlinkedModelSerializer where instead of ID url is generated
@@ -14,6 +19,10 @@ class CantonSerializer(serializers.ModelSerializer):
         model= Canton
         fields= "__all__"
 
+class CoursesSecondarySchoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= CoursesSecondarySchool
+        fields= "__all__"
 
 # Nested relations of serialiser https://www.django-rest-framework.org/api-guide/relations/#nested-relationships
 class SecondarySchoolSerializer(serializers.ModelSerializer):
@@ -30,18 +39,20 @@ class SecondarySchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model= SecondarySchool
         fields= "__all__"
+        depth= 2
 
 
-class TeacherLoginSerializer(serializers.ModelSerializer):
+class TeacherSerializer(serializers.ModelSerializer):
     #canton_code = serializers.CharField(source='Canton._canton_code')
     #canton_code = serializers.PrimaryKeyRelatedField(many=True, read_only= True)
     # canton_code= serializers.RelatedField(many=True, read_only= True)
     # Exclude many=True for not-iterable objects
     school_id= SecondarySchoolSerializer(read_only= True)
+    course_code= CoursesSecondarySchoolSerializer(read_only= True)
     # user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     # Create custom serializer field with get_<name-field> method
     # It will be part of response, it can be used for example of login duration
-    len_name= serializers.SerializerMethodField()
+
 
     class Meta:
         model= Teacher() # get_user_model()
@@ -49,8 +60,8 @@ class TeacherLoginSerializer(serializers.ModelSerializer):
         exclude = ['password', 'groups']
     
     # === Methods ====
-    def get_len_name(self, object):
-        return len(object.first_name)
+    # def get_is_super_user(self, object):
+    #     return object.is_superuser
     
     # For serializer.Serializer validation: https://www.django-rest-framework.org/api-guide/serializers/#validation
     # Validation is done the same
