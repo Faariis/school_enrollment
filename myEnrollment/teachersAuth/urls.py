@@ -2,7 +2,9 @@ from django.urls import path
 from teachersAuth.api.views import (
     ApiOverview,
     LogoutView,
-    )
+    TeacherPasswordReset,
+    SetNewPasswordAPIView
+)
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -20,5 +22,8 @@ urlpatterns = [
 
     path('teacher-create/', TeacherCreateView.as_view(), name= 'teacher-create'),
     path('teacher/<int:pk>/', TeacherViewDetail.as_view(), name='teacher-detail'),
-    path('teacher-list/', TeacherList.as_view(), name='teacher-list')
+    path('teacher-list/', TeacherList.as_view(), name='teacher-list'),
+    path('password-reset/', TeacherPasswordReset.as_view(), name="password-reset-confirm")
+    path('password-reset-complete', SetNewPasswordAPIView.as_view(),
+                                    name='password-reset-complete')
 ]   
