@@ -91,6 +91,9 @@ if os.getenv('GITHUB_WORKFLOW'):
             'NAME': os.environ.get('DATABASE_NAME'), # we could use other GITHUB_secrets
             'USER': os.environ['DATABASE_USER'],
             'PASSWORD':os.environ['DATABASE_PASS'],
+            'TEST': {
+                'NAME': 'my_test'
+            }
             # 'HOST': os.environ['GITHUB_DB_HOST']
         }
     }
@@ -100,7 +103,10 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'NAME': os.environ.get('DATABASE_NAME'),
             'USER': os.environ.get('DATABASE_USER'),
-            'PASSWORD':os.environ.get('DATABASE_PASS')
+            'PASSWORD':os.environ.get('DATABASE_PASS'),
+            'TEST': {
+                'NAME': 'my_test'
+            }
         }
     }
 

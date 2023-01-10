@@ -72,3 +72,10 @@ Transparent enrollment of students in public/private schools and univerisites.
   - In case of `super user`, on this route there will be 2 buttons `Delete teacher`
 
 6. `/api/teacher/delete/<int:pk>`
+
+
+### Note
+- When using tests we must add to default connection `TEST` dictionary with `NAME` of specific database (by default `test_<db>`) and do grant privileges on that db before running test:
+```sql
+MariaDB [(none)]> grant all privileges on my_test.* to anel@localhost;
+```

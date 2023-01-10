@@ -11,9 +11,10 @@ from django.utils.translation import gettext_lazy as _
 from secondarySchools.models import SecondarySchool, CoursesSecondarySchool
 
 def update_last_and_previous_login(sender, user, **kwargs):
-    user.previous_login = user.last_login
-    user.last_login = timezone.now()
-    user.save(update_fields=["previous_login", "last_login"])
+    if user.last_login:
+        user.previous_login = user.last_login
+        user.last_login = timezone.now()
+        user.save(update_fields=["previous_login", "last_login"])
 
 user_logged_in.disconnect(update_last_login, dispatch_uid="update_last_login")
 user_logged_in.connect(update_last_and_previous_login, dispatch_uid="update_last_and_previous_login")
@@ -129,4 +130,7 @@ class Teacher(AbstractUser):
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
+        return True
+
+    def _do_update(self, base_qs, using, pk_val, values, update_fields, forced_update):
         return True
