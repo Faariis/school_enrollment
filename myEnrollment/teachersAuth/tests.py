@@ -86,14 +86,13 @@ class RegisterTestCase(APITestCase):
     resp= self.client.get(reverse('canton-list'), data={'format': 'json'})
     self.assertEqual(resp.status_code, status.HTTP_200_OK,
                      resp.data)
-    print(resp.data)
+    self.assertEqual(Canton.objects.count(), 2)
 
   def test_get_canton_by_canton_code(self):
     self.log_me_with_jwt()
     resp= self.client.get(reverse('canton-detail', args=('zdk',)), data={'format': 'json'})
     self.assertEqual(resp.status_code, status.HTTP_200_OK,
                      resp.data)
-  
 
   def test_create_canton_by_canton_code(self):
     self.log_me_with_jwt()
@@ -109,3 +108,5 @@ class RegisterTestCase(APITestCase):
     resp= self.client.put(reverse('canton-detail', args=('tz',)), data)
     self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND,
                      resp.data)
+
+    #TODO: move testing to application secondarySchools and finish for schools
