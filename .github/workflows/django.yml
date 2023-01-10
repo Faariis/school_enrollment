@@ -66,7 +66,7 @@ jobs:
         # It can be done in systemd scripts.
         python manage.py collectstatic
         # Drop old database, migrate and load data from fixtures
-        mariadb -u$DATABASE_USER -p$DATABASE_PASS -e "drop database $DATABASE_NAME; create database $DATABASE_NAME; use database $DATABASE_NAME"
+        mariadb -u$DATABASE_USER -p$DATABASE_PASS -e "drop database if exists $DATABASE_NAME; create database $DATABASE_NAME; use $DATABASE_NAME"
         python manage.py resetmigrations
         python manage.py makemigrations
         python manage.py migrate
