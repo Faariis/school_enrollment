@@ -65,7 +65,11 @@ jobs:
         # New secerts GITHUB_ related are needed.
         # It can be done in systemd scripts.
         python manage.py collectstatic
-        # Load data from fixtures
+        # Drop old database, migrate and load data from fixtures
+        mariadb -u$DATABASE_USER -pDATABASE_PASS -e "drop database $DATABASE_NAME; create database $DATABASE_NAME; use database $DATABASE_NAME"
+        python manage.py resetmigrations
+        python manage.py makemigrations
+        python manage.py migrate
         python manage.py initdata
    # - name: Run Tests
    #   run: |
