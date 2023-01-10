@@ -92,7 +92,7 @@ if os.getenv('GITHUB_WORKFLOW'):
             'USER': os.environ['DATABASE_USER'],
             'PASSWORD':os.environ['DATABASE_PASS'],
             'TEST': {
-                'NAME': 'my_test'
+                'NAME': os.environ.get('DATABASE_TEST_NAME')
             }
             # 'HOST': os.environ['GITHUB_DB_HOST']
         }
@@ -105,7 +105,7 @@ else:
             'USER': os.environ.get('DATABASE_USER'),
             'PASSWORD':os.environ.get('DATABASE_PASS'),
             'TEST': {
-                'NAME': 'my_test'
+                'NAME': os.environ.get('DATABASE_TEST_NAME')
             }
         }
     }

@@ -9,8 +9,55 @@ on:
     branches: [ "main"]
 
 jobs:
+  mariadb-clean:
+    runs-on: self-hosted
+    environment: my_env_ci_cid
+
+    steps:
+    - name: Check user and pwd - will not show name
+      run: |
+          pwd
+          echo "Current - user : $USER. Not /etc/sudoers changed !requiretty"
+    - name: Stop process and start
+      run: |
+          # Kill process
+          # sudo kill -9 `pgrep -x mariadbd`
+          # Stop the process
+          sudo systemctl stop mariadb
+          # Restart process
+          sudo systemctl restart mariadb
+          sudo systemctl status mariadb
+    - name: Create user if not exist
+      env:
+        ROOT_PASS:     ${{ secrets.ROOT_PASS }}
+        DATABASE_USER: ${{ secrets.DATABASE_USER }}
+        DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
+
+      run: |
+          echo "create user if not exists '$DATABASE_USER' identified by '$DATABASE_PASS'"| sudo mariadb -uroot -p$ROOT_PASS
+  
+    - name: Add grants for user
+      env:
+        ROOT_PASS:     ${{ secrets.ROOT_PASS }}
+        DATABASE_USER: ${{ secrets.DATABASE_USER }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        DATABASE_TEST_NAME: ${{ secrets.DATABASE_TEST_NAME }}
+      run: |
+          # Add grants to database and test_database
+          echo "grant all privileges on $DATABASE_NAME.* to $DATABASE_USER@localhost" | sudo mariadb -uroot -p$ROOT_PASS
+          echo "grant all privileges on $DATABASE_TEST_NAME.* to $DATABASE_USER@localhost" | sudo mariadb -uroot -p$ROOT_PASS
+    - name: Recreate database
+      env:
+        ROOT_PASS:     ${{ secrets.ROOT_PASS }}
+        DATABASE_USER: ${{ secrets.DATABASE_USER }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        DATABASE_TEST_NAME: ${{ secrets.DATABASE_TEST_NAME }}
+      run: |
+          # Recreate database
+          echo "drop database if exists $DATABASE_NAME; create database $DATABASE_NAME; use $DATABASE_NAME" |sudo mariadb -uroot -p$ROOT_PASS
   build:
     runs-on: self-hosted
+    needs: mariadb-clean
     environment: my_env_ci_cid
     strategy:
       max-parallel: 4
@@ -33,6 +80,7 @@ jobs:
         DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
         DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
         JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
+        DATABASE_TEST_NAME: ${{ secrets.DATABASE_TEST_NAME }}
       run: |
           touch .server_env
           echo "export SECRET_KEY="$SECRET_KEY >>.server_env
@@ -42,6 +90,7 @@ jobs:
           echo "export DATABASE_USER="$DATABASE_USER >>.server_env
           echo "export DATABASE_PASS="$DATABASE_PASS >>.server_env
           echo "export DATABASE_HOST="$DATABASE_HOST >>.server_env
+          echo "export DATABASE_TEST_NAME= $DATABASE_TEST_NAME >> .server_env"
           echo "export JWT_PRIVATE_KEY="$JWT_PRIVATE_KEY >>.server_env
           echo "Value from secet", $DJANGO_DEBUG
     - name: Install Dependencies
@@ -65,8 +114,7 @@ jobs:
         # New secerts GITHUB_ related are needed.
         # It can be done in systemd scripts.
         python manage.py collectstatic
-        # Drop old database, migrate and load data from fixtures
-        mariadb -u$DATABASE_USER -p$DATABASE_PASS -e "drop database if exists $DATABASE_NAME; create database $DATABASE_NAME; use $DATABASE_NAME"
+        # Remove migration and load data
         python manage.py resetmigrations
         python manage.py makemigrations
         python manage.py migrate
