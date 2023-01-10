@@ -11,10 +11,13 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework  import status
-from rest_framework.generics import CreateAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.generics import (
+                                      CreateAPIView,
+                                      RetrieveUpdateDestroyAPIView
+                                    )
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
-from teachersAuth.serializers import TeacherSerializer
+from teachersAuth.serializers import TeacherSerializer, TeacherSerializerUpdate
 from teachersAuth.models import Teacher
 
 from secondarySchools.models import SecondarySchool,CoursesSecondarySchool
@@ -33,6 +36,7 @@ class ApiOverview(APIView):
             'Refresh JWT token': '/api/login/refresh/',
 
             'Admin can create new teacher':'/api/teacher-create/',
+            'GET/PUT/DELETE new teacher':'/api/teacher/<pk>',
             
             'List all cantons': '/api/canton/',
             'GET/UPDATE/DELETE cantons by canton code(like zdk)': '/api/canton/<canton_code>/',
@@ -87,4 +91,23 @@ class TeacherCreateView(CreateAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TeacherViewDetail(RetrieveUpdateDestroyAPIView):
+    serializer_class= TeacherSerializerUpdate
+    permission_classes= [IsAuthenticated]
+
+    def get_queryset(self):
+        return Teacher.objects.all()
+
+    # Make sure that normal users can get only current form to update
+    def get(self, request, *args, **kwargs):
+        pk= self.kwargs['pk']
+        t_id= request.user.id
+        if pk != t_id and t_id:
+            teacher= Teacher.objects.get(id= t_id)
+            if teacher.is_superuser == False:
+                return Response({'message':'user not authirized to view teacher'},
+                       status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
+        return super().get(request, *args, **kwargs)
 

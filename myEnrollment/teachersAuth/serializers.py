@@ -13,7 +13,13 @@ from secondarySchools.serializers import  (
 # Model serializer .create.update is automatically created compared to serializers.Serializer
 # There also exist serializers.HyperlinkedModelSerializer where instead of ID url is generated
 
-
+# used to hide hashed password
+class TeacherSerializerUpdate(serializers.ModelSerializer):
+    class Meta:
+        model= Teacher
+        exclude = ['password', 'groups', 'user_permissions', 'date_joined',
+                   'previous_login', 'last_login', 'is_active']
+    
 class TeacherSerializer(serializers.ModelSerializer):
     #canton_code = serializers.CharField(source='Canton._canton_code')
     #canton_code = serializers.PrimaryKeyRelatedField(many=True, read_only= True)
