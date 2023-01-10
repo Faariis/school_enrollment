@@ -9,6 +9,7 @@ from django.contrib.auth.models import update_last_login
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from secondarySchools.models import SecondarySchool, CoursesSecondarySchool
+from django.forms import ValidationError
 
 def update_last_and_previous_login(sender, user, **kwargs):
     if user.last_login:
@@ -132,5 +133,16 @@ class Teacher(AbstractUser):
         # Simplest possible answer: Yes, always
         return True
 
-    def _do_update(self, base_qs, using, pk_val, values, update_fields, forced_update):
-        return True
+    # def _do_update(self, base_qs, using, pk_val, values, update_fields, forced_update):
+    #     return True
+
+    # def validate_unique(self, *args, **kwargs):
+    #     # super(Teacher, self).validate_unique(*args, **kwargs)
+    #     qs = Teacher.objects.filter(email=self.email)
+    #     if qs.filter(school_id__id=self.school_id).exists():
+    #         raise ValidationError({'school_id':['school_id must be unique',]})
+    # def save(self, *args, **kwargs):
+    #     self.validate_unique()
+    #     super(Teacher, self).save(*args, **kwargs)
+    # def get_unique_for_date_validators(self):
+    #     return True 

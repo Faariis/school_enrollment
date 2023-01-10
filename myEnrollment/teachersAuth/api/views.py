@@ -10,7 +10,14 @@ django.utils.translation.ugettext= g4
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework  import status
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import IsAdminUser
 
+from teachersAuth.serializers import TeacherSerializer
+from teachersAuth.models import Teacher
+
+from secondarySchools.models import SecondarySchool,CoursesSecondarySchool
 # view for listing a queryset. ListAPIView
 # view for retrieving a single model instance. RetrieveAPIView
 # retrieving, updating a model instance. RetrieveUpdateAPIView
@@ -24,6 +31,8 @@ class ApiOverview(APIView):
             'Get JWT token': '/api/login/',
             'Logout teacher': '/api/logout/',
             'Refresh JWT token': '/api/login/refresh/',
+
+            'Admin can create new teacher':'/api/teacher-create/',
             
             'List all cantons': '/api/canton/',
             'GET/UPDATE/DELETE cantons by canton code(like zdk)': '/api/canton/<canton_code>/',
@@ -47,3 +56,35 @@ class LogoutView(APIView):
             'message':'success'
         }
         return response
+
+class TeacherCreateView(CreateAPIView):
+    serializer_class= TeacherSerializer
+    permission_classes= [IsAdminUser]
+    # queryset= Teacher.ab_ob.all()
+
+    def post(self, request):
+        # We have to check school and course_code  
+        school_id= request.data['school_id']
+        course_code= request.data['school_id']
+
+        school= SecondarySchool.objects.filter(school_id= school_id).first()
+        if school is None:
+            return Response({"error": "wrong school"}, status=status.HTTP_400_BAD_REQUEST)
+        school_course= CoursesSecondarySchool.objects.filter(course_code= course_code).first()
+        if school_course is None:
+            return Response({"error": "wrong school"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer= TeacherSerializer(data= request.data)
+
+        if serializer.is_valid():
+            # self.pre_save(serializer.object)
+            # self.object = serializer.save(force_insert=True)
+            # self.post_save(self.object, created=True)
+            # headers = self.get_success_headers(serializer.data)
+            # serializer = TicketSerializer(serializer.object)
+            serializer.save(course_code= school_course,
+                            school_id= school)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

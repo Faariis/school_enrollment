@@ -55,7 +55,7 @@ class SchoolView(ListCreateAPIView):
                 serializer.save()
                 return Response(serializer.data)
             else:
-                return Response(serializer.errors)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(status.HTTP_403_FORBIDDEN)
 
@@ -115,7 +115,7 @@ class CantonSchoolView(ListCreateAPIView):
             serializer.save(school_canton_code= school_canton_code_obj)
             return Response(serializer.data)
         else:
-            return Response(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CantonSchoolDetailView(RetrieveUpdateDestroyAPIView):
     queryset= SecondarySchool.objects.all()
