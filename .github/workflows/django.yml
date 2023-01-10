@@ -65,6 +65,8 @@ jobs:
         # New secerts GITHUB_ related are needed.
         # It can be done in systemd scripts.
         python manage.py collectstatic
+        # Load data from fixtures
+        python manage.py initdata
    # - name: Run Tests
    #   run: |
    #     python manage.py test
