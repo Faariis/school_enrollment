@@ -13,6 +13,16 @@ from secondarySchools.serializers import  (
 # Model serializer .create.update is automatically created compared to serializers.Serializer
 # There also exist serializers.HyperlinkedModelSerializer where instead of ID url is generated
 
+class TeacherSerializerList(serializers.ModelSerializer):
+    #school_id= SecondarySchoolSerializer(many=True, read_only=True)
+    #course_code= CoursesSecondarySchoolSerializer(many=True, read_only= True)
+
+    class Meta:
+        model= Teacher
+        fields= ['email', 'password', 'first_name', 'last_name',
+                'is_staff', 'school_id', 'course_code']
+        depth= 2
+
 # used to hide hashed password
 class TeacherSerializerUpdate(serializers.ModelSerializer):
     class Meta:

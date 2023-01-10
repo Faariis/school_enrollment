@@ -9,7 +9,8 @@ from rest_framework_simplejwt.views import (
 )
 from teachersAuth.api.views import (
                                      TeacherCreateView,
-                                     TeacherViewDetail
+                                     TeacherViewDetail,
+                                     TeacherList
                                    )
 urlpatterns = [
     path('', ApiOverview.as_view(), name='teacher-home'),
@@ -18,5 +19,6 @@ urlpatterns = [
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('teacher-create/', TeacherCreateView.as_view(), name= 'teacher-create'),
-    path('teacher/<int:pk>/', TeacherViewDetail.as_view(), name='teacher-detail')
+    path('teacher/<int:pk>/', TeacherViewDetail.as_view(), name='teacher-detail'),
+    path('teacher-list/', TeacherList.as_view(), name='teacher-list')
 ]   

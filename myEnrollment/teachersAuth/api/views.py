@@ -13,11 +13,16 @@ from rest_framework.response import Response
 from rest_framework  import status
 from rest_framework.generics import (
                                       CreateAPIView,
-                                      RetrieveUpdateDestroyAPIView
+                                      RetrieveUpdateDestroyAPIView,
+                                      ListAPIView
                                     )
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
-from teachersAuth.serializers import TeacherSerializer, TeacherSerializerUpdate
+from teachersAuth.serializers import (
+                                       TeacherSerializer,
+                                       TeacherSerializerUpdate,
+                                       TeacherSerializerList
+                                     )
 from teachersAuth.models import Teacher
 
 from secondarySchools.models import SecondarySchool,CoursesSecondarySchool
@@ -36,7 +41,8 @@ class ApiOverview(APIView):
             'Refresh JWT token': '/api/login/refresh/',
 
             'Admin can create new teacher':'/api/teacher-create/',
-            'GET/PUT/DELETE new teacher':'/api/teacher/<pk>',
+            'GET/PUT/DELETE new teacher':'/api/teacher/<pk>/',
+            'GET teacher list - visible to admin only':'/api/teacher-list/',
             
             'List all cantons': '/api/canton/',
             'GET/UPDATE/DELETE cantons by canton code(like zdk)': '/api/canton/<canton_code>/',
@@ -111,3 +117,12 @@ class TeacherViewDetail(RetrieveUpdateDestroyAPIView):
                        status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
         return super().get(request, *args, **kwargs)
 
+class TeacherList(ListAPIView):
+    queryset= Teacher.objects.all()
+    serializer_class= TeacherSerializerList
+
+    def list(self, request):
+        if Teacher.objects.get(id= request.user.id).is_superuser:
+            qs= self.get_queryset()
+            serializer= self.serializer_class(qs, many= True)
+            return Response(serializer.data)
