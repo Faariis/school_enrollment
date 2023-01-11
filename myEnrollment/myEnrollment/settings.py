@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'teachersAuth',
     'rest_framework_simplejwt',
-    'secondarySchools'
+    'secondarySchools',
+    # "mail"
 ]
 
 MIDDLEWARE = [
@@ -198,3 +199,12 @@ SIMPLE_JWT = {
 # JWTStatelessUserAuthentication
 # JWTTokenUserAuthentication
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/stateless_user_authentication.html#jwtstatelessuserauthentication-backend
+
+DEFAULT_FROM_EMAIL= os.environ.get('DEFAULT_FROM_EMAIL')
+
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER') # django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587 # or 25 for TLS (unencrypted), 465 for SSL
+EMAIL_USE_TLS = True
