@@ -1,0 +1,58 @@
+[
+  {
+    "model": "teachersAuth.Teacher",
+    "pk": 1,
+    "fields": {
+      "first_name":"Anel",
+      "last_name":"Husakovic",
+      "email":"a@a",
+      "password":"a",
+      "is_superuser":1,
+      "is_staff":1,
+      "school_id":"1",
+      "course_code":"RTiA"
+    }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk":2,
+    "fields": {
+      "first_name":"Ismet",
+      "last_name":"Glumcevic",
+      "email":"i@i",
+      "password":"i",
+      "is_superuser":1,
+      "is_staff":1,
+      "school_id":1,
+      "course_code":"EL"
+    }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk":3,
+    "fields": {
+      "first_name":"Test",
+      "last_name":"Test",
+      "email":"test@test",
+      "password":"test",
+      "is_superuser":0,
+      "is_staff":0,
+      "school_id":2,
+      "course_code":"EL-meh"
+    }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk":4,
+    "fields": {
+      "first_name":"Test",
+      "last_name":"Test",
+      "email":"test2@test2",
+      "password":"test",
+      "is_superuser":0,
+      "is_staff":0,
+      "school_id":2,
+      "course_code":"EL-meh"
+    }
+  }
+]

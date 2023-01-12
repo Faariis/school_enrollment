@@ -1,0 +1,25 @@
+[
+  {
+    "model": "secondarySchools.SecondarySchool",
+    "pk": 1,
+    "fields": {}
+  },
+  {
+    "model": "secondarySchools.SecondarySchool",
+    "pk": 2,
+    "fields": {
+      "school_canton_code":"ZDK",
+      "school_name":"Medicinska skola, Zenica",
+      "school_address":"Crkvice"
+    }
+  },
+  {
+    "model": "secondarySchools.SecondarySchool",
+    "pk": 3,
+    "fields": {
+      "school_canton_code":"SA",
+      "school_name":"Medicinska skola, Sarajevo",
+      "school_address":"Dobrinja"
+    }
+  }
+]

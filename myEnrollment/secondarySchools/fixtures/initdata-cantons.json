@@ -1,0 +1,13 @@
+[
+  {
+    "model": "secondarySchools.Canton",
+    "fields": {}
+  },
+  {
+    "model": "secondarySchools.Canton",
+    "fields": {
+      "_canton_code": "SA",
+      "canton_name":"Sarajevski kanton"
+    }
+  }
+]

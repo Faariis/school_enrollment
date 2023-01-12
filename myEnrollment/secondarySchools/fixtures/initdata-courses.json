@@ -1,0 +1,35 @@
+[
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "RTiA",
+      "course_name":"Racunarska tehnika i automatika",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "EL",
+      "course_name":"Elektronicar telekomunikacija",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "Mehatronika",
+      "course_name":"Racunarska tehnika i automatika",
+      "school_id": 2
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "EL-meh",
+      "course_name":"Elektronicar-mehanicar",
+      "school_id": 2,
+      "course_duration":"III"
+    }
+  }
+]
