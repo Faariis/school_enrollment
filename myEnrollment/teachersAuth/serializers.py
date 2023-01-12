@@ -42,7 +42,7 @@ class TeacherSerializer(serializers.ModelSerializer):
     # user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
     # Create custom serializer field with get_<name-field> method
     # It will be part of response, it can be used for example of login duration
-
+    password= serializers.CharField(max_length=555, write_only= True)
 
     class Meta:
         model= Teacher # get_user_model()
@@ -89,3 +89,11 @@ class TeacherSerializer(serializers.ModelSerializer):
     # def create(self, validated_data):
     #     user = Teacher.objects.create_user(validated_data['email'], validated_data["password"])
     #     return user
+
+
+class EmailVerificationSerializer(serializers.ModelSerializer):
+    token = serializers.CharField(max_length=555)
+
+    class Meta:
+        model = Teacher
+        fields = ['token']

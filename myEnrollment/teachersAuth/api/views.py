@@ -21,7 +21,8 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from teachersAuth.serializers import (
                                        TeacherSerializer,
                                        TeacherSerializerUpdate,
-                                       TeacherSerializerList
+                                       TeacherSerializerList,
+                                       EmailVerificationSerializer
                                      )
 from teachersAuth.models import Teacher
 from secondarySchools.models import SecondarySchool,CoursesSecondarySchool
@@ -30,6 +31,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings as api_settings
+import jwt
+from django.contrib.auth.hashers import make_password
 
 # view for listing a queryset. ListAPIView
 # view for retrieving a single model instance. RetrieveAPIView
@@ -90,8 +93,10 @@ class TeacherCreateView(CreateAPIView):
             return Response({"error": "wrong school"}, status=status.HTTP_400_BAD_REQUEST)
 
         serializer= TeacherSerializer(data= request.data)
-
         if serializer.is_valid():
+            password = serializer.validated_data.get('password')
+            email = serializer.validated_data.get('email')
+            serializer.validated_data['password']=make_password(password)
             # self.pre_save(serializer.object)
             # self.object = serializer.save(force_insert=True)
             # self.post_save(self.object, created=True)
@@ -110,7 +115,7 @@ class TeacherCreateView(CreateAPIView):
             refresh_token= RefreshToken.for_user(user)
             # register token
             access_token= str(refresh_token.access_token)
-            absurl=protocol+domain+relative_link+"?/token="+access_token
+            absurl=protocol+domain+relative_link+"?token="+access_token
             msg="Hi please verify your email: \n" + \
                 "domain: "+ domain + "\n"+\
                 "relative: "+ relative_link + "\n"+ \
@@ -154,5 +159,23 @@ class TeacherList(ListAPIView):
             serializer= self.serializer_class(qs, many= True)
             return Response(serializer.data)
 
+
+# from https://www.youtube.com/watch?v=cdg48zsjZAE
+# https://github.com/CryceTruly/incomeexpensesapi/tree/master/authentication
 class VerifyEmailView(APIView):
-    pass
+    serializer_class = EmailVerificationSerializer
+
+    def get(self, request):
+        token= request.GET.get('token')
+        try:
+            payload= jwt.decode(jwt=token, key= api_settings.SECRET_KEY, algorithms=['HS256'])
+            teacher= Teacher.objects.get(id= payload['user_id'])
+            if  not teacher.is_verified:
+                teacher.is_verified= True
+                teacher.save()
+            return Response({'email': 'Successfully activated'}, status=status.HTTP_200_OK)
+
+        except jwt.ExpiredSignatureError as identifier:
+            return Response({'error': 'Activation Expired'}, status=status.HTTP_400_BAD_REQUEST)
+        except jwt.exceptions.DecodeError as identifier:
+            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)

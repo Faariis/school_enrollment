@@ -92,6 +92,7 @@ class Teacher(AbstractUser):
                                  on_delete=models.CASCADE,
                                  related_name='course_code')
     previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
+    is_verified= models.BooleanField(default=False)
     objects = CustomUserManager() # objects is _default_manager, default models.Manager()
     ab_ob= ExManager()
     # We want that Django logs in with email and password

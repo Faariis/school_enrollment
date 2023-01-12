@@ -10,7 +10,7 @@ class MyUserAdmin(BaseUserAdmin):
     # that reference specific fields on auth.User.
     # This will show columns to display
     list_display = ('email','first_name', 'last_name', 'previous_login',
-                    'last_login','is_staff','is_active','date_joined')
+                    'last_login','is_staff','is_active','is_verified','date_joined')
     search_fields=('email', 'first_name')
     readonly_fields=('date_joined','last_login','previous_login')
     filter_horizontal = ()
