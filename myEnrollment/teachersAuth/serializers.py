@@ -50,7 +50,7 @@ class TeacherSerializer(serializers.ModelSerializer):
         # fields= ['email', 'password', 'first_name', 'last_name'
         #          'is_staff', 'school_id', 'course_code']
         exclude = ['groups', 'user_permissions', 'date_joined',
-                   'previous_login', 'last_login', 'is_active']
+                   'previous_login', 'last_login', 'is_active', 'is_verified']
     
     # === Methods ====
     # def get_is_super_user(self, object):
