@@ -81,6 +81,10 @@ jobs:
         DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
         JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
         DATABASE_TEST_NAME: ${{ secrets.DATABASE_TEST_NAME }}
+        SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        DEFAULT_FROM_EMAIL: ${{ secrets.DEFAULT_FROM_EMAIL }}
+        EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+        EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
       run: |
           touch .server_env
           echo "export SECRET_KEY="$SECRET_KEY >>.server_env
@@ -90,8 +94,12 @@ jobs:
           echo "export DATABASE_USER="$DATABASE_USER >>.server_env
           echo "export DATABASE_PASS="$DATABASE_PASS >>.server_env
           echo "export DATABASE_HOST="$DATABASE_HOST >>.server_env
-          echo "export DATABASE_TEST_NAME= $DATABASE_TEST_NAME >> .server_env"
+          echo "export DATABASE_TEST_NAME="$DATABASE_TEST_NAME >> .server_env
           echo "export JWT_PRIVATE_KEY="$JWT_PRIVATE_KEY >>.server_env
+          echo "export SENDGRID_API_KEY="$SENDGRID_API_KEY >>.server_env
+          echo "export DEFAULT_FROM_EMAIL="$DEFAULT_FROM_EMAIL >>.server_env
+          echo "export EMAIL_HOST="$EMAIL_HOST >>.server_env
+          echo "export EMAIL_HOST_USER="$EMAIL_HOST_USER >>.server_env
           echo "Value from secet", $DJANGO_DEBUG
     - name: Install Dependencies
       run: |
