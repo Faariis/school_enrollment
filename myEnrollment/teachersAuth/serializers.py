@@ -43,14 +43,15 @@ class TeacherSerializer(serializers.ModelSerializer):
     # Create custom serializer field with get_<name-field> method
     # It will be part of response, it can be used for example of login duration
     password= serializers.CharField(max_length=555, write_only= True)
-
+    is_verified=serializers.BooleanField(read_only= True)
+    
     class Meta:
         model= Teacher # get_user_model()
         # fields="__all__"
         # fields= ['email', 'password', 'first_name', 'last_name'
         #          'is_staff', 'school_id', 'course_code']
         exclude = ['groups', 'user_permissions', 'date_joined',
-                   'previous_login', 'last_login', 'is_active', 'is_verified']
+                   'previous_login', 'last_login', 'is_active']
     
     # === Methods ====
     # def get_is_super_user(self, object):
