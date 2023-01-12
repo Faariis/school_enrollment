@@ -10,8 +10,19 @@ from secondarySchools.serializers import  (
                                             SecondarySchoolSerializer,
                                             CoursesSecondarySchoolSerializer
                                           )
+from django.contrib import auth
+from rest_framework.exceptions import AuthenticationFailed
+
 # Model serializer .create.update is automatically created compared to serializers.Serializer
 # There also exist serializers.HyperlinkedModelSerializer where instead of ID url is generated
+
+class EmailVerificationSerializer(serializers.ModelSerializer):
+    token = serializers.CharField(max_length=555)
+
+    class Meta:
+        model = Teacher
+        fields = ['token']
+
 
 class TeacherSerializerList(serializers.ModelSerializer):
     #school_id= SecondarySchoolSerializer(many=True, read_only=True)
@@ -89,3 +100,47 @@ class TeacherSerializer(serializers.ModelSerializer):
     # def create(self, validated_data):
     #     user = Teacher.objects.create_user(validated_data['email'], validated_data["password"])
     #     return user
+
+
+class LoginSerializer(serializers.ModelSerializer):
+    email= serializers.EmailField(max_length=255, min_length= 3)
+    password= serializers.CharField(write_only= True) # don't return to user
+    # tokens= models.CharField(max_length=555, read_only= True) # don't ask user about, just return it to user
+    tokens= serializers.SerializerMethodField()
+
+    class Meta:
+        model= Teacher
+        fields= ['email', 'password', 'tokens']
+
+    def get_tokens(self, obj):
+        user = Teacher.objects.get(email=obj['email'])
+
+        return {
+            'refresh': user.tokens()['refresh'],
+            'access': user.tokens()['access']
+        }
+    
+    def validate(self, obj):
+        email= obj['email']
+        password_raw= obj['password']
+        filtered_user_by_email = Teacher.objects.filter(email=email)
+        if filtered_user_by_email:
+            password= filtered_user_by_email[0].set_password(password_raw)
+        else:
+             raise AuthenticationFailed('No such user with email')
+        import pdb; pdb.set_trace()
+        user = auth.authenticate(email=email, password=password)
+        # if filtered_user_by_email.exists() and filtered_user_by_email[0].auth_provider != 'email':
+        #     raise AuthenticationFailed(
+        #         detail='Please continue your login using ' + filtered_user_by_email[0].auth_provider)
+        if not user:
+            raise AuthenticationFailed('Invalid credentials, try again')
+        if not user.is_active:
+            raise AuthenticationFailed('Account disabled, contact admin')
+        if not user.is_verified:
+            raise AuthenticationFailed('Email is not verified')
+
+        return {
+            'email': user.email,
+            'tokens': user.tokens
+        }

@@ -14,14 +14,21 @@ from rest_framework  import status
 from rest_framework.generics import (
                                       CreateAPIView,
                                       RetrieveUpdateDestroyAPIView,
-                                      ListAPIView
+                                      ListAPIView,
+                                      GenericAPIView,
                                     )
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import (
+                                         IsAdminUser,
+                                         IsAuthenticated,
+                                         AllowAny
+                                       )
 
 from teachersAuth.serializers import (
                                        TeacherSerializer,
                                        TeacherSerializerUpdate,
-                                       TeacherSerializerList
+                                       TeacherSerializerList,
+                                       EmailVerificationSerializer,
+                                       LoginSerializer
                                      )
 from teachersAuth.models import Teacher
 from secondarySchools.models import SecondarySchool,CoursesSecondarySchool
@@ -30,6 +37,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings as api_settings
+import jwt
 
 # view for listing a queryset. ListAPIView
 # view for retrieving a single model instance. RetrieveAPIView
@@ -154,5 +162,31 @@ class TeacherList(ListAPIView):
             serializer= self.serializer_class(qs, many= True)
             return Response(serializer.data)
 
+# from https://www.youtube.com/watch?v=cdg48zsjZAE
+# https://github.com/CryceTruly/incomeexpensesapi/tree/master/authentication
 class VerifyEmailView(APIView):
-    pass
+    serializer_class = EmailVerificationSerializer
+
+    def get(self, request):
+        token= request.GET.get('token')
+        try:
+            payload= jwt.decode(token, api_settings.SECRET_KEY)
+            teacher= Teacher.objects.get(id= payload['user_id'])
+            if  not teacher.is_verified:
+                teacher.is_verified= True
+                teacher.save()
+            return Response({'email': 'Successfully activated'}, status=status.HTTP_200_OK)
+
+        except jwt.ExpiredSignatureError as identifier:
+            return Response({'error': 'Activation Expired'}, status=status.HTTP_400_BAD_REQUEST)
+        except jwt.exceptions.DecodeError as identifier:
+            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+
+class LoginTeacherView(GenericAPIView):
+    serializer_class= LoginSerializer
+    permission_classes= [AllowAny]
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

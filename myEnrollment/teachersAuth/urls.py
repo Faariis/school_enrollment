@@ -5,7 +5,8 @@ from teachersAuth.api.views import (
     TeacherCreateView,
     TeacherViewDetail,
     TeacherList,
-    VerifyEmailView
+    VerifyEmailView,
+    LoginTeacherView
     )
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -14,7 +15,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('', ApiOverview.as_view(), name='teacher-home'),
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('login/', LoginTeacherView.as_view(), name='login-teacher'),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 

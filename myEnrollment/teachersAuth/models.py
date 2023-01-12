@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from secondarySchools.models import SecondarySchool, CoursesSecondarySchool
 from django.forms import ValidationError
+from rest_framework_simplejwt.tokens import RefreshToken
 
 def update_last_and_previous_login(sender, user, **kwargs):
     if user.last_login:
@@ -93,6 +94,7 @@ class Teacher(AbstractUser):
                                  related_name='course_code')
     previous_login = models.DateTimeField(_("previous login"), blank=True, null=True)
     objects = CustomUserManager() # objects is _default_manager, default models.Manager()
+    is_verified= models.BooleanField(default=False)
     ab_ob= ExManager()
     # We want that Django logs in with email and password
     USERNAME_FIELD = 'email'
@@ -133,6 +135,12 @@ class Teacher(AbstractUser):
         # Simplest possible answer: Yes, always
         return True
 
+    def tokens(self):
+        refresh = RefreshToken.for_user(self)
+        return {
+            'refresh': str(refresh),
+            'access': str(refresh.access_token)
+        }
     # def _do_update(self, base_qs, using, pk_val, values, update_fields, forced_update):
     #     return True
 
