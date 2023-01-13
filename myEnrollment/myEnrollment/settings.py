@@ -208,8 +208,9 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 EMAIL_PORT = 587 # or 25 for TLS (unencrypted), 465 for SSL
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# https://simpleit.rocks/python/django/adding-email-to-django-the-easiest-way/
 # Toggle sandbox mode (when running in DEBUG mode)
-#SENDGRID_SANDBOX_MODE_IN_DEBUG=True
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
 #SENDGRID_ECHO_TO_STDOUT=True
