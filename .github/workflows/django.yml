@@ -101,7 +101,7 @@ jobs:
           echo "export EMAIL_HOST="$EMAIL_HOST >>.server_env
           echo "export EMAIL_HOST_USER="$EMAIL_HOST_USER >>.server_env
           echo "Value from secet", $DJANGO_DEBUG
-    - name: Install Dependencies
+    - name: Install Dependencies and run migrations
       run: |
         # I couldn't update packages here because of sudo
         # It is done manually, updated python3 and pip3 and python3.8-venv
@@ -123,10 +123,18 @@ jobs:
         # It can be done in systemd scripts.
         python manage.py collectstatic
         # Remove migration and load data
-        python manage.py resetmigrations
+        # python manage.py resetmigrations
+        find teachersAuth/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
+        find secondarySchools/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
         python manage.py makemigrations
         python manage.py migrate
         python manage.py initdata
+    - name: Restart services
+      run: |
+        sudo systemctl restart gunicorn.service
+        sudo systemctl restart nginx
+        sudo systemctl daemon-reload
+        echo "Now it should work !"
    # - name: Run Tests
    #   run: |
    #     python manage.py test
