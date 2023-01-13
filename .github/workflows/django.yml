@@ -100,7 +100,11 @@ jobs:
           echo "export DEFAULT_FROM_EMAIL="$DEFAULT_FROM_EMAIL >>.server_env
           echo "export EMAIL_HOST="$EMAIL_HOST >>.server_env
           echo "export EMAIL_HOST_USER="$EMAIL_HOST_USER >>.server_env
-          echo "Value from secet", $DJANGO_DEBUG
+          # Copy generated file to environment file that is used by systemd scripts.
+          cp .server_env $HOME/env_files/school_systemd_env
+          cd $HOME/env_files
+          # Remove export key word from file
+          sed -i 's/export //g' school_systemd_env
     - name: Install Dependencies and run migrations
       run: |
         # I couldn't update packages here because of sudo
