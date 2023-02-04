@@ -58,5 +58,20 @@
       "school_id":2,
       "course_code":"EL-meh"
     }
+  },
+  {
+    "model": "teachersAuth.Teacher",
+    "pk": 5,
+    "fields": {
+      "first_name":"Ismet",
+      "last_name":"Glumcevic",
+      "email":"ismetglumcevic@gmail.com",
+      "password":"pass",
+      "is_superuser":1,
+      "is_staff":1,
+      "is_verified":1,
+      "school_id":"1",
+      "course_code":"RTiA"
+    }
   }
 ]
