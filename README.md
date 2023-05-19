@@ -2,10 +2,20 @@
 Transparent enrollment of students in public/private schools and univerisites.
 
 ### Routes
-- For all routes see `APIOverview` go to: `api/`
-#### Authentication for users app teachersAuth
+- For all routes see `APIOverview` go to: `/`
+- There should be 2 main API routes for 2 applications:
+  1. `/api/teachers`
+  2. `/api/sec-schools/`
+#### 1. Authentication for users app teachersAuth
+- It consists of following routes
+  1. `/api/teachers`
+  2. `/api/teachers/login`
+  3. `/api/teachers/logout`
+  4. `/api/teachers/teacher/<pk>`
+  5. `/api/teachers/teacher-list`
+  6. `/api/teachers/email-verify`
 - This app should support login,logout and registration of teachers and CRUD operations
-- Only super admin can register and delete teachers (and update)
+- Only super admin can register, update and delete teachers. <testing>
 - Teachers can update their profiles (todo whcih route?)
 0. `/api/`
   - This should show all routes
