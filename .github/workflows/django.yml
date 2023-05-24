@@ -106,7 +106,17 @@ jobs:
           cd $HOME/env_files
           # Remove export key word from file
           sed -i 's/export //g' school_systemd_env
-    - name: Install Dependencies and run migrations
+    - name: Reset migrations
+      run: |
+        # Remove migration and load data
+        # python manage.py resetmigrations
+        pwd
+        cd myEnrollment/
+        find teachersAuth/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
+        find secondarySchools/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
+        find student/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
+        # find primarySchools/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
+    - name: Install Dependencies, run migrations and init data
       run: |
         # I couldn't update packages here because of sudo
         # It is done manually, updated python3 and pip3 and python3.8-venv
@@ -127,12 +137,11 @@ jobs:
         # New secerts GITHUB_ related are needed.
         # It can be done in systemd scripts.
         python manage.py collectstatic
-        # Remove migration and load data
-        # python manage.py resetmigrations
-        find teachersAuth/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
-        find secondarySchools/migrations/ -name "*.py" -not -name "__init__.py"|xargs rm
+        echo "Make migrations"
         python manage.py makemigrations
+        echo "Migrate!"
         python manage.py migrate
+        echo "Init data"
         python manage.py initdata
     - name: Restart services
       run: |
