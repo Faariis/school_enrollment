@@ -13,13 +13,34 @@ class Canton(models.Model):
         db_table= 'cantons'
 
 
+"""
+  Nastavni planovi i programi po kantonu
+"""
+class CantonNPP(models.Model):
+    npp_choices=(
+        ('BOS','BOS'),
+        ('HRV','HRV'),
+        ('SRP','SRP')
+    )
+    npp_code= models.CharField(max_length=3,
+                                   default='BOS', choices= npp_choices,
+                                   primary_key=True)
+    npp_canton= models.ForeignKey(Canton, default='ZDK',
+                                  on_delete=models.CASCADE,
+                                  related_name='npp_canton')
+    def __str__(self):
+        return "%s" % (self._canton_code)
+    class Meta:
+        db_table= 'cantons'
+
+
 class SecondarySchool(models.Model):
     school_name= models.CharField(max_length=100, default='Tehnicka skola Zenica', unique=True)
     school_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
     # Many schools can belong to one canton
     school_canton_code= models.ForeignKey(Canton, default='ZDK',
-                                         on_delete=models.CASCADE,
-                                         related_name='school_canton')
+                                          on_delete=models.CASCADE,
+                                          related_name='school_canton')
     def __str__(self):
         return "%s - %s" % (self.school_name, self.school_canton_code)
     class Meta:

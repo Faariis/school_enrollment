@@ -1,0 +1,143 @@
+[
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":1,
+    "fields": {
+      "_course_code":"Matematika"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":2,
+    "fields": {
+      "_course_code":"Engleski jezik"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":3,
+    "fields": {
+      "_course_code":"Tjelesni i zdravstveni odgoj"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":4,
+    "fields": {
+      "_course_code":"Biologija"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":5,
+    "fields": {
+      "_course_code":"Fizika"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":6,
+    "fields": {
+      "_course_code":"Hemija"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":7,
+    "fields": {
+      "_course_code":"Informatika"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":8,
+    "fields": {
+      "_course_code":"Vjeronauka"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":9,
+    "fields": {
+      "_course_code":"Tehnicka kultura"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":10,
+    "fields": {
+      "_course_code":"Njemacki"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":11,
+    "fields": {
+      "_course_code":"Geografija"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":12,
+    "fields": {
+      "_course_code":"Historija"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":13,
+    "fields": {
+      "_course_code":"Poznavanje prirode i drustva"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":14,
+    "fields": {
+      "_course_code":"Hrvatski jezik"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":15,
+    "fields": {
+      "_course_code":"Srpski jezik"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":16,
+    "fields": {
+      "_course_code":"Muzicka kultura"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":17,
+    "fields": {
+      "_course_code":"Likovna kultura"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":18,
+    "fields": {
+      "_course_code":"Priroda"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":19,
+    "fields": {
+      "_course_code":"Društvo"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolCourses",
+    "pk":20,
+    "fields": {
+      "_course_code":"Građansko obrazovanje"
+    }
+  }
+]
+

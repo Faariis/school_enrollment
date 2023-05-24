@@ -1,0 +1,37 @@
+[
+  {
+    "model": "primarySchools.PrimarySchoolClass",
+    "pk":1,
+    "fields": {
+      "_school_class_code":"V"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolClass",
+    "pk":2,
+    "fields": {
+      "_school_class_code":"V1"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolClass",
+    "pk":3,
+    "fields": {
+      "_school_class_code":"VII"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolClass",
+    "pk":4,
+    "fields": {
+      "_school_class_code":"VIII"
+    }
+  },
+  {
+    "model": "primarySchools.PrimarySchoolClass",
+    "pk":5,
+    "fields": {
+      "_school_class_code":"IX"
+    }
+  }
+]

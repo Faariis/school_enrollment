@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'teachersAuth',
     'rest_framework_simplejwt',
     'secondarySchools',
+    'student'
     # "mail"
 ]
 

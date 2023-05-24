@@ -1,0 +1,90 @@
+[
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Matematika",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Engleski jezik",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Tjelesni i zdravstveni odgoj",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Biologija",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Fizika",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Hemija",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Informatika",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"Vjeronauka",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"",
+      "course_canton_code":"ZDK"
+    }
+  },
+  {
+    "model": "primarySchools.CoursesPrimarySchoolCanton",
+    "fields": {
+      "course_class":"V",
+      "course_name":"",
+      "course_canton_code":"ZDK"
+    }
+  }
+]
