@@ -20,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Include `urls` file from application
     # to accept all end-points of user
-    path('api/teachers', include('teachersAuth.urls')),
-    path('api/sec-schools', include('secondarySchools.urls'))
+    path('api/teachers/', include('teachersAuth.urls')),
+    path('api/sec-schools/', include('secondarySchools.urls')),
+    path('api/prim-schools/', include('primarySchools.urls')),
+    path('api/sec-students/', include('student.urls')),
 ]

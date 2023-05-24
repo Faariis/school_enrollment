@@ -1,0 +1,13 @@
+[
+    {
+      "model": "primarySchools.PrimarySchoolClass",
+      "pk":1,
+      "fields": {
+        "school_name":"Edhem Mulabdic",
+        "school_address": "Bilimsce",
+        "email":"info@edhem.ba",
+        "school_canton_code_npp": "1"
+      }
+    }
+
+]

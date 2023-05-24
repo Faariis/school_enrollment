@@ -1,0 +1,18 @@
+[
+    {
+      "model": "student.Pupil",
+      "fields": {
+        "primary_school":"Edhem Mulabdic",
+        "secondary_shool_id": "1",
+        "name":"Neko",
+        "last_name": "Neko",
+        "gender": "M",
+        "address": "Nedjeljica",
+        "guardian_name": "Neki",
+        "phone_number": "+38761123456",
+        "guardian_number": "+38761123456",
+        "guardian_email": "guardina@email.com",
+        "email": "neko@neko.com"
+      }
+    }
+]

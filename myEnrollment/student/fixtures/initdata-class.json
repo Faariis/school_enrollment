@@ -1,0 +1,44 @@
+[
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"I"
+      }
+    },
+    {
+        "model": "student.Class",
+        "fields": {
+          "_classes":"II"
+        }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"III"
+      }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"IV"
+      }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"V"
+      }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"VI"
+      }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"IV"
+      }
+    }
+]

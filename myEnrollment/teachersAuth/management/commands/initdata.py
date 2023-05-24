@@ -16,7 +16,13 @@ class Command(BaseCommand):
         for t in Teacher.objects.all():
             t.set_password(t.password)
             t.save()
-
+        # app: student fixtures
+        call_command('loaddata','initdata-class')
+        call_command('loaddata','initdata-pupil')
+        call_command('loaddata','initdata-primary-courses')
+        call_command('loaddata','initdata-class-grades')
+        # app: primarySchools fixtures
+        # call_command('loaddata','initdata-primary-schools')
 
         # #initdata file is created combining multiple files from other fixtures
         # app_name = __package__.split('.')[0]

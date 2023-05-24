@@ -43,26 +43,30 @@ from django.contrib.auth.hashers import make_password
 class ApiOverview(APIView):
     def get(self, request):
         api_urls = {
-            'API overview': '/api/',
-            'Get JWT token': '/api/login/',
-            'Logout teacher': '/api/logout/',
-            'Refresh JWT token': '/api/login/refresh/',
+            'API overview <update url to /api/>': '/api/teachers',
+            'Get JWT token': '/api/teachers/login/',
+            'Logout teacher': '/api/teachers/logout/',
+            'Refresh JWT token': '/api/teachers/login/refresh/',
 
-            'Admin can create new teacher':'/api/teacher-create/',
-            'GET/PUT/DELETE new teacher':'/api/teacher/<pk>/',
-            'GET teacher list - visible to admin only':'/api/teacher-list/',
+            'Admin can create new teacher':'/api/teachers/teacher-create/',
+            'GET/PUT/DELETE new teacher':'/api/teachers/teacher/<pk>/',
+            'GET teacher list - visible to admin only':'/api/teachers/teacher-list/',
+
+            'List all cantons': '/api/sec-schools/canton/',
+            'GET/UPDATE/DELETE cantons by canton code(like zdk)': '/api/sec-schools/canton/<canton_code>/',
+
+            'GET all schools from canton or CREATE a school in a canton':'/api/sec-schools/canton/schools/<canton_code>/',
+            'GET/POST/PUT/DELETE school from list by pk':'/api/sec-schools/canton/schools/<pk>/',
+
+            'List of all schools and create new school visible by logged teacher': '/api/sec-schools/school-list/',
+            'GET/POST/PUT/DELETE school by id': '/api/sec-schools/school-list/<int:pk>/',
+            'CREATE course for school by id': '/api/sec-schools/school-list/<int:pk>/course-create/',
+            'GET all course school by id': '/api/sec-schools/school-list/<int:pk>/courses/',
             
-            'List all cantons': '/api/canton/',
-            'GET/UPDATE/DELETE cantons by canton code(like zdk)': '/api/canton/<canton_code>/',
-
-            'GET all schools from canton or CREATE a scohol in a canton':'/api/canton/schools/<canton_code>/',
-            'GET/POST/PUT/DELETE school from list by pk':'/api/canton/schools/<pk>',
-
-            'List of all schools and create new school visible by logged teacher': '/api/school-list/',
-            'GET/POST/PUT/DELETE school by id': '/api/school-list/<int:pk>/',
-            'CREATE course for school by id': '/api/school-list/<int:pk>/course-create/',
-            'GET all course school by id': '/api/school-list/<int:pk>/courses/',
-
+            'GET/CREATE new student':'/api/sec-students/student-list',
+            'GET/POST/PUT/DELETE existing student with id':'/api/sec-students/student-list/<int:pk>/',
+            'GET/CREATE courses of a student <pk> ':'/api/sec-students/student-list/<int:pk>/course-create/',
+            'GET/POST/PUT/DELETE courses of a student with <pk>':'/api/sec-students/student-list/<int:pk>/courses/',
          }
         return Response(api_urls)
 

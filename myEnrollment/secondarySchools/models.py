@@ -13,13 +13,48 @@ class Canton(models.Model):
         db_table= 'cantons'
 
 
+# """
+#   Nastavni planovi i programi po kantonu
+# """
+# class CantonNPPPrimarySchool(models.Model):
+#     npp_choices=(
+#         ('BOS','BOS'),
+#         ('HRV','HRV'),
+#         ('SRP','SRP')
+#     )
+#     npp_code= models.CharField(max_length=3,
+#                                default='BOS',
+#                                choices= npp_choices,
+#                                unique= True)
+#     npp_canton= models.ForeignKey(Canton, default='ZDK',
+#                                   on_delete=models.CASCADE,
+#                                   related_name='npp_canton')
+#     def __str__(self):
+#         return "%s" % (self._canton_code)
+#     class Meta:
+#         db_table= 'cantonsNPPPrimary'
+#         constraints = [
+#             models.UniqueConstraint(fields=['npp_code','npp_canton'],
+#                                     name='composite-pk-npp_code-npp_canton')
+#         ]
+#     @classmethod
+#     def get_default_pk(cls):
+#         obj, created = cls.objects.get_or_create(
+#             npp_code='BOS',
+#             npp_canton= 'ZDK',
+#             defaults={'npp_code':'BOS', 'npp_canton':'ZDK'}
+#         )
+#         return obj.pk
+
+
 class SecondarySchool(models.Model):
     school_name= models.CharField(max_length=100, default='Tehnicka skola Zenica', unique=True)
     school_address= models.CharField(max_length=100, default='Bilimisce 28, Zenica')
+    school_email= models.EmailField(null= True, blank= True)
     # Many schools can belong to one canton
     school_canton_code= models.ForeignKey(Canton, default='ZDK',
-                                         on_delete=models.CASCADE,
-                                         related_name='school_canton')
+                                          on_delete=models.CASCADE,
+                                          related_name='school_canton')
     def __str__(self):
         return "%s - %s" % (self.school_name, self.school_canton_code)
     class Meta:

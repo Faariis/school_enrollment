@@ -1,0 +1,20 @@
+[
+    {
+      "model": "student.PupilClassesCoursesGrades",
+      "fields": {
+        "pupil_id":"1",
+        "class_id":"V",
+        "course_code":"MM",
+        "score":"3"
+      }
+    },
+    {
+        "model": "student.PupilClassesCoursesGrades",
+        "fields": {
+          "pupil_id":"1",
+          "class_id":"V",
+          "course_code":"ENG",
+          "score":"4"
+        }
+      }
+]

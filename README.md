@@ -1,11 +1,39 @@
 # school_enrollment
 Transparent enrollment of students in public/private schools and univerisites.
+### All routes
+```
+  'API overview <update url to /api/>': '/api/teachers',
+  'Get JWT token': '/api/teachers/login/',
+  'Logout teacher': '/api/teachers/logout/',
+  'Refresh JWT token': '/api/teachers/login/refresh/',
 
+  'Admin can create new teacher':'/api/teachers/teacher-create/',
+  'GET/PUT/DELETE new teacher':'/api/teachers/teacher/<pk>/',
+  'GET teacher list - visible to admin only':'/api/teachers/teacher-list/',
+
+  'List all cantons': '/api/sec-schools/canton/',
+  'GET/UPDATE/DELETE cantons by canton code(like zdk)': '/api/sec-schools/canton/<canton_code>/',
+
+  'GET all schools from canton or CREATE a school in a canton':'/api/sec-schools/canton/schools/<canton_code>/',
+  'GET/POST/PUT/DELETE school from list by pk':'/api/sec-schools/canton/schools/<pk>/',
+
+  'List of all schools and create new school visible by logged teacher': '/api/sec-schools/school-list/',
+  'GET/POST/PUT/DELETE school by id': '/api/sec-schools/school-list/<int:pk>/',
+  'CREATE course for school by id': '/api/sec-schools/school-list/<int:pk>/course-create/',
+  'GET all course school by id': '/api/sec-schools/school-list/<int:pk>/courses/',
+
+  'GET/CREATE new student':'/api/sec-students/student-list',
+  'GET/POST/PUT/DELETE existing student with id':'/api/sec-students/student-list/<int:pk>/',
+  'GET/CREATE courses of a student <pk> ':'/api/sec-students/student-list/<int:pk>/course-create/',
+  'GET/POST/PUT/DELETE courses of a student with <pk>':'/api/sec-students/student-list/<int:pk>/courses/',
+```
 ### Routes
 - For all routes see `APIOverview` go to: `/`
 - There should be 2 main API routes for 2 applications:
   1. `/api/teachers`
   2. `/api/sec-schools/`
+  3. `/api/sec-students/`
+  4. `/api/prim-schoos` < TODO >
 #### 1. Authentication for users app teachersAuth
 - It consists of following routes
   1. `/api/teachers`
@@ -15,7 +43,7 @@ Transparent enrollment of students in public/private schools and univerisites.
   5. `/api/teachers/teacher-list`
   6. `/api/teachers/email-verify`
 - This app should support login,logout and registration of teachers and CRUD operations
-- Only super admin can register, update and delete teachers. <testing>
+- Only super admin can register, update and delete teachers. < TODO TESTING >
 - Teachers can update their profiles (todo whcih route?)
 0. `/api/`
   - This should show all routes
