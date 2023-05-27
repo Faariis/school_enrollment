@@ -4,6 +4,7 @@
       "fields": {
         "primary_school":"Edhem Mulabdic",
         "secondary_shool_id": "1",
+        "desired_course_A":"RTiA",
         "name":"Neko",
         "last_name": "Neko",
         "gender": "M",

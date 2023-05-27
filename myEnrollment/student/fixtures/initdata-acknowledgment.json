@@ -1,0 +1,16 @@
+[
+    {
+        "model": "student.Acknowledgment",
+        "fields": {
+          "ack_name": "Takmicenje iz matematike",
+          "ack_points":"30"
+        }
+      },
+      {
+          "model": "student.Acknowledgment",
+          "fields": {
+            "ack_name": "Takmicenje iz informatike",
+            "ack_points":"40"
+          }
+      }
+]

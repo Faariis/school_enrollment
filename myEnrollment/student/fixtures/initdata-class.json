@@ -38,7 +38,19 @@
     {
       "model": "student.Class",
       "fields": {
-        "_classes":"IV"
+        "_classes":"VII"
+      }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"VIII"
+      }
+    },
+    {
+      "model": "student.Class",
+      "fields": {
+        "_classes":"IX"
       }
     }
 ]

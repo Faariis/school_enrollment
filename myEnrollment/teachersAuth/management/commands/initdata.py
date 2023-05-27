@@ -21,6 +21,8 @@ class Command(BaseCommand):
         call_command('loaddata','initdata-pupil')
         call_command('loaddata','initdata-primary-courses')
         call_command('loaddata','initdata-class-grades')
+        call_command('loaddata','initdata-special-courses-per-sec-school.json')
+        call_command('loaddata','initdata-acknowledgment.json')
         # app: primarySchools fixtures
         # call_command('loaddata','initdata-primary-schools')
 

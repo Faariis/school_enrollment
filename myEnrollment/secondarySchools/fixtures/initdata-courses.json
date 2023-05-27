@@ -18,8 +18,8 @@
   {
     "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
-      "_course_code": "Mehatronika",
-      "course_name":"Racunarska tehnika i automatika",
+      "_course_code": "MEH",
+      "course_name":"Mehatronika",
       "school_id": 2
     }
   },

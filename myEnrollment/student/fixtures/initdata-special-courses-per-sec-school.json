@@ -1,0 +1,20 @@
+[
+    {
+        "model": "student.SpecialCoursesPerDesiredChoice",
+        "fields": {
+          "school_id": "1",
+          "course_code":"RTiA",
+          "primary_class_code": "VII",
+          "primary_class_course_code":"MM"
+        }
+      },
+      {
+          "model": "student.SpecialCoursesPerDesiredChoice",
+          "fields": {
+            "school_id": "1",
+            "course_code":"RTiA",
+            "primary_class_code": "VII",
+            "primary_class_course_code":"ENG"
+          }
+      }
+]

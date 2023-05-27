@@ -2,7 +2,8 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 from secondarySchools.models import (
-                                      SecondarySchool
+                                      SecondarySchool,
+                                      CoursesSecondarySchool
                                     )
 from django.core.validators import MinValueValidator,MaxValueValidator
 from django.db.models.signals import pre_save
@@ -17,7 +18,8 @@ class Acknowledgment(models.Model):
     ack_points= models.PositiveIntegerField()
     class Meta:
         db_table= 'acknowledgments'
-
+    def __str__(self):
+        return "%s points: %s" %(self.ack_name, self.ack_points)
 
 
 """
@@ -30,6 +32,8 @@ class Pupil(models.Model):
     primary_school= models.CharField(max_length=50)
     secondary_shool_id= models.ForeignKey(SecondarySchool, on_delete= models.CASCADE,
                                           related_name= 'student_secondary_school')
+    desired_course_A= models.ForeignKey(CoursesSecondarySchool, on_delete= models.CASCADE,
+                                          related_name= 'student_secondary_school_desired_course_A')
     name= models.CharField(max_length=30)
     middle_name= models.CharField(max_length=30, null= True, blank= True)
     last_name= models. CharField(max_length=50)
@@ -130,17 +134,34 @@ class PupilClassesCoursesGrades(models.Model):
                                        null= True,
                                        blank= True)
 
-    behavior_grades=(
-        ('5','odlican'),
-        ('4','vrlo dobar'),
-        ('3','dobar'),
-        ('2','zadovoljava')
-    )
-    pupil_behavior= models.CharField(choices= behavior_grades,
-                                     max_length= 10)
+    # behavior_grades=(
+    #     ('5','odlican'),
+    #     ('4','vrlo dobar'),
+    #     ('3','dobar'),
+    #     ('2','zadovoljava')
+    # )
+    # pupil_behavior= models.CharField(choices= behavior_grades,
+    #                                  max_length= 10)
     class Meta:
         db_table= 'PupilClassesCoursesGrades'
         constraints = [
             models.UniqueConstraint(fields=['pupil_id','class_id','course_code'],
                                     name='composite-pk-pupil_id-class_id-course_code')
         ]
+
+"""
+  Svaki smjer ima svoje specijalne predmete (njih N)
+"""
+class SpecialCoursesPerDesiredChoice(models.Model):
+    school_id= models.ForeignKey(SecondarySchool,
+                                on_delete= models.CASCADE,
+                                related_name='special_course_school_id')
+    course_code= models.ForeignKey(CoursesSecondarySchool,
+                                on_delete= models.CASCADE,
+                                related_name='special_course_course_code')
+    primary_class_code= models.ForeignKey(Class,
+                                          on_delete= models.CASCADE,
+                                          related_name='special_course_class_id')
+    primary_class_course_code= models.ForeignKey(Courses,
+                                                 on_delete= models.CASCADE,
+                                                 related_name='special_course_class_course_code')
