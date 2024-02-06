@@ -1,6 +1,7 @@
 from django.db import models
 # Followed the tutorial https://www.youtube.com/watch?v=PUzgZrS_piQ&list=PLlameCF3cMEu-LbsQYUDUVkiZ2jc2rpLx
 from django.core.mail import send_mail
+from django.core.exceptions import ObjectDoesNotExist, EmptyResultSet
 from django.contrib.auth.models import UserManager,BaseUserManager,AbstractBaseUser, AbstractUser # AbstractUser, AbstractBaseUser
 
 
@@ -10,6 +11,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from secondarySchools.models import SecondarySchool, CoursesSecondarySchool
 from django.forms import ValidationError
+
 
 def update_last_and_previous_login(sender, user, **kwargs):
     if user.last_login:
@@ -49,13 +51,27 @@ class CustomUserManager(UserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, password=None, **extra_fields):
+    def create_superuser(self, email, first_name, last_name,
+                         password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
+        """ For superuser we need to have non-null schoolID and course
+            Here we are adding existing or dummy values if not exist
+        """
+        try:
+            school= SecondarySchool.objects.get_or_create(id= 1)[0]
+            course= CoursesSecondarySchool.objects.filter(school_id= school)[0]
+        except ObjectDoesNotExist:
+          print("Course doesn't exist create one before.")
+        except EmptyResultSet:
+            print("Course doesn't exist create one before.")
+
         user = self.model(
             first_name= first_name,
             last_name= last_name,
             password= password,
+            school_id= school,
+            course_code= course,
             email=self.normalize_email(email),
             **extra_fields
         )

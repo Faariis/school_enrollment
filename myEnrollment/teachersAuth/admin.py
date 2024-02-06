@@ -22,7 +22,7 @@ class MyUserAdmin(BaseUserAdmin):
     add_fieldsets=(
         ('Personal info', {
             'classes': ('wide', 'extrapretty',), #there is collapse
-            'fields': ('first_name','last_name') #display multiple fields in the same line with ()
+            'fields': ('first_name','last_name','school_id', 'course_code') #display multiple fields in the same line with ()
         }),
         ('Login info', {
             'description':("This is mandatory"),
