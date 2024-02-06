@@ -85,13 +85,19 @@ class CantonView(ListAPIView):
     permission_classes= [IsAuthenticated]
     queryset= Canton.objects.all()
     serializer_class= CantonSerializer
+    paginate_by= 5
+
+    def get_queryset(self):
+        return  Canton.objects.order_by('_canton_code')
 
 class CantonDetailView(RetrieveUpdateDestroyAPIView):
     lookup_field="_canton_code"
     serializer_class= CantonSerializer
     permission_classes= [IsAdminUser]
+
     def get_queryset(self):
         return Canton.objects.all()
+
 
 class CantonSchoolView(ListCreateAPIView):
     serializer_class= SecondarySchoolSerializer
