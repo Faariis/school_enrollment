@@ -27,6 +27,7 @@ from rest_framework import status, mixins
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 import myEnrollment.settings as api_settings
+from django.core.exceptions import ObjectDoesNotExist
 
 class SchoolView(ListCreateAPIView):
     # queryset = SecondarySchool.objects.all() # we use custom manager
@@ -97,6 +98,21 @@ class CantonDetailView(RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Canton.objects.all()
+
+    def put(self, request, *args, **kwargs):
+        try:
+            instance = Canton.objects.get(_canton_code= self.kwargs['_canton_code'])
+        except ObjectDoesNotExist:
+            instance= Canton(_canton_code= self.kwargs['_canton_code'])
+            # ^ using above to mimic create/post,although it shouldn't be allowed
+            # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = CantonSerializer(instance, data=request.data,
+                                      partial= False)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CantonSchoolView(ListCreateAPIView):

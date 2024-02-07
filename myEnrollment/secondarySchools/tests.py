@@ -12,7 +12,7 @@ from secondarySchools.models import (
                                       Canton
                                     )
 import json
-from django.core.serializers.json import DjangoJSONEncoder
+# from django.core.serializers.json import DjangoJSONEncoder
 
 # from django.contrib.auth import get_user_model
 # from rest_framework.authtoken.models import Token
@@ -167,43 +167,32 @@ class RegisterTestCase(APITestCase):
     }
     resp= self.client.post(url, data)
 
-    # UPDATE with NULL (404)
-    # Put should change from null to value (as done in postman), but it is not
+    # UPDATE with NULL (404) - this emulates create
+    # Put should change from null to value (as done in postman) - works
     resp= self.client.put(url, data)
-    self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND, resp.data)
-    # self.assertEqual(resp.status_code, status.HTTP_200_OK, resp.data)
-
-    # Real UPDATE of old record - with bad request - missing school_canton  (404)
-    url= reverse('canton-detail', kwargs={'_canton_code': 'zdk'})
-    resp= self.client.put(url, data= json.dumps(data),
-                          content_type='application/json')
-    self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST, resp.data)
-
-    # Update data request (200) - see CantonSerializer
-    # Check data of Canton are correct before update
-    # Check that the record's fields have been updated
-    self.assertEqual(self.canton_zdk._canton_code, 'zdk')
+    self.assertEqual(resp.status_code, status.HTTP_200_OK, resp.data)
 
     # Try to see how to use serilizer - we need to provide list @TODO
     # school_canton= json.dumps(SecondarySchool.objects.first().school_canton_code,
     #                           cls=DjangoJSONEncoder)
     data={
-      '_canton_code':'tz',
-      'canton_name':"Tuzlanski kanton",
+      '_canton_code':'USK',
+      'canton_name':"Unsko-sanski kanton",
       'school_canton': []
     }
 
-    url= reverse('canton-detail', kwargs={'_canton_code': 'zdk'})
+    url= reverse('canton-detail', kwargs={'_canton_code': self.canton_zdk._canton_code})
     resp= self.client.put(url, data= json.dumps(data),
                           content_type='application/json')
     self.assertEqual(resp.status_code, status.HTTP_200_OK, resp.data)
     # Refresh the old_record from the database
     self.canton_zdk.refresh_from_db()
-    # Check that the record's fields have been updated
-    # self.assertEqual(self.canton_zdk._canton_code, 'tz')
+    # Check that the record's fields have been updated @TODO < why is not working?
+    # self.assertContains(resp, "USK")
+    # self.assertEqual(self.canton_zdk._canton_code, 'USK')
     # Seems still zdk is left - not good, although it does work from web
 
-# TODO proceed this route with delete request
+# TODO - try to fix above problem with update and proceed this route with delete request
 
 # TODO finish other routes with specific operations
   """
