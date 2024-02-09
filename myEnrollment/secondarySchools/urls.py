@@ -14,9 +14,9 @@ urlpatterns = [
     path('canton/', CantonView.as_view(), name="canton-list"),
     path('canton/<str:_canton_code>/', CantonDetailView.as_view(), name="canton-detail"),
 
-    path('canton/schools/<str:canton_code>/', CantonSchoolView.as_view(), name="canton-school-list"),
     path('canton/schools/<int:pk>/', CantonSchoolDetailView.as_view(), name="canton-school-detail"),
-    
+    path('canton/schools/<str:canton_code>/', CantonSchoolView.as_view(), name="canton-school-list"),
+
     path('school-list/', SchoolView.as_view(), name="school-list"),
     path('school-list/<int:pk>/', SchoolViewDetail.as_view(), name="school-detail"),
     path('school-list/<int:pk>/course-create/', SchoolCoursesCreateView.as_view(), name="school-course-create"),
