@@ -32,23 +32,34 @@ from django.core.exceptions import ObjectDoesNotExist
 class SchoolView(ListCreateAPIView):
     # queryset = SecondarySchool.objects.all() # we use custom manager
     serializer_class = SecondarySchoolSerializer
-    permission_classes = [IsAuthenticated]
+    '''
+    This view implements list of schools for specific teacher.
+    Create of new school possible only by superuser.
+    All IsAuthenticated should be changed with is_verified @TODO
+    '''
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return SecondarySchool.objects.all()
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
-        teacher= Teacher.objects.get(id= request.auth['user_id'])
+        teacher= Teacher.objects.get(id= request.user.id)
+        # Superuser may see all schools
+        if teacher.is_superuser:
+            data= self.get_queryset()
+            serializer= SecondarySchoolSerializer(data, many= True)
+            return Response(serializer.data)
         # teacher= Teacher.objects.get(id= 1)
-        schools= Teacher.objects.values_list('school_id', flat=True).filter(id=teacher.id)
+        # Regular user can see only his school
+        schools= Teacher.objects.values_list('school_id', flat= True).filter(id= teacher.id)
         school_id_queryset= SecondarySchool.objects.get(id= schools[0])
         serializer= SecondarySchoolSerializer(school_id_queryset)
         return Response(serializer.data)
     
     def create(self, request, *args, **kwargs):
         # Only superuser can create new school
-        is_superuser= Teacher.objects.get(id= request.auth['user_id']).is_superuser
+        is_superuser= Teacher.objects.get(id= request.user.id).is_superuser
         # is_superuser=1 
         if is_superuser:
             serializer= SecondarySchoolSerializer(data=request.data)

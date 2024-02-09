@@ -155,7 +155,7 @@ class TeacherViewDetail(RetrieveUpdateDestroyAPIView):
         if pk != t_id and t_id:
             teacher= Teacher.objects.get(id= t_id)
             if teacher.is_superuser == False:
-                return Response({'message':'Teacher not authorized to view teacher'},
+                return Response({'message':'Teacher not authorized to view teacher list'},
                        status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
         return super().get(request, *args, **kwargs)
 

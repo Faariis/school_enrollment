@@ -35,6 +35,5 @@ class SecondarySchoolSerializer(serializers.ModelSerializer):
         model= SecondarySchool
         # fields= "__all__"
         # depth= 1
-        fields= ['id', 'school_name', 'school_address', 'school_canton_code',
-                 'courses_secondary']
+        fields= ['id', 'school_name', 'school_address', 'school_canton_code']
 
