@@ -99,20 +99,20 @@ class CantonDetailView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Canton.objects.all()
 
-    def put(self, request, *args, **kwargs):
+    def put(self, request, _canton_code, format=None):
         try:
-            instance = Canton.objects.get(_canton_code= self.kwargs['_canton_code'])
+            instance= Canton.objects.get(_canton_code= _canton_code)
         except ObjectDoesNotExist:
-            instance= Canton(_canton_code= self.kwargs['_canton_code'])
+            instance= Canton(_canton_code= _canton_code)
             # ^ using above to mimic create/post,although it shouldn't be allowed
             # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = CantonSerializer(instance, data=request.data,
-                                      partial= False)
+        serializer= CantonSerializer(instance, data= request.data,
+                                     partial= False)
         if serializer.is_valid():
             serializer.save()
-            return Response(status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status.HTTP_200_OK)
+        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
 
 
 class CantonSchoolView(ListCreateAPIView):
@@ -143,4 +143,3 @@ class CantonSchoolDetailView(RetrieveUpdateDestroyAPIView):
     queryset= SecondarySchool.objects.all()
     serializer_class= SecondarySchoolSerializer
     permission_classes= [IsAdminUser]
-    
