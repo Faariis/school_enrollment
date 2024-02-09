@@ -137,6 +137,11 @@ class TeacherCreateView(CreateAPIView):
 
 class TeacherViewDetail(RetrieveUpdateDestroyAPIView):
     serializer_class= TeacherSerializerUpdate
+    '''
+    All authenticated users can update/delete user, but this shouldn't be
+    allowed in frontend.
+    Only superuser can see the list of all users.
+    '''
     permission_classes= [IsAuthenticated]
 
     def get_queryset(self):
@@ -146,22 +151,35 @@ class TeacherViewDetail(RetrieveUpdateDestroyAPIView):
     def get(self, request, *args, **kwargs):
         pk= self.kwargs['pk']
         t_id= request.user.id
+        # Only superuser can get list of data to update
         if pk != t_id and t_id:
             teacher= Teacher.objects.get(id= t_id)
             if teacher.is_superuser == False:
-                return Response({'message':'user not authirized to view teacher'},
+                return Response({'message':'Teacher not authorized to view teacher'},
                        status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
         return super().get(request, *args, **kwargs)
 
 class TeacherList(ListAPIView):
     queryset= Teacher.objects.all()
     serializer_class= TeacherSerializerList
+    '''
+    IsAdminUser is related to `is_staff` field, that can check admin page.
+    However it is not the user created with `createsuperuser`.
+    This list is available only to superusers.
+    '''
+    # permission_classes= [IsAdminUser]
 
     def list(self, request):
         if Teacher.objects.get(id= request.user.id).is_superuser:
             qs= self.get_queryset()
             serializer= self.serializer_class(qs, many= True)
             return Response(serializer.data)
+        else:
+            # This handles IsAdminUser case too
+            resp= {'message':'Teacher not authorized to view teacher.\
+                              Only superuser can see this list. '}
+            return Response(resp,
+                            status= status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
 
 
 # from https://www.youtube.com/watch?v=cdg48zsjZAE

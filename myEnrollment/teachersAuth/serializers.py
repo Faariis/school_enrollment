@@ -19,8 +19,9 @@ class TeacherSerializerList(serializers.ModelSerializer):
 
     class Meta:
         model= Teacher
+        # Password field returned is hashed
         fields= ['email', 'password', 'first_name', 'last_name',
-                'is_staff', 'school_id', 'course_code']
+                 'is_superuser', 'is_staff', 'school_id', 'course_code']
         depth= 2
 
 # used to hide hashed password
