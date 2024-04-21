@@ -13,6 +13,7 @@ from django.utils import timezone
 """
   Acknowledgment model - specijalna priznanja
 """
+
 class Acknowledgment(models.Model):
     ack_name= models.CharField(max_length=100)
     ack_points= models.PositiveIntegerField()
@@ -105,6 +106,7 @@ class Class(models.Model):
 """
   All Courses in Primary school
 """
+"""
 class Courses(models.Model):
     # Think about to add choices of all possible combinations
     course_code= models.CharField(max_length=5,
@@ -116,6 +118,25 @@ class Courses(models.Model):
 
     def __str__(self):
         return "Predmet %s" %(self.course_code)
+"""
+class Courses(models.Model):
+    GRADE_CHOICES = [
+        ('VI', 'Grade VI'),
+        ('VII', 'Grade VII'),
+        ('VIII', 'Grade VIII'),
+        ('IX', 'Grade IX'),
+    ]
+    # Think about to add choices of all possible combinations
+    course_code= models.CharField(max_length=5,
+                                  primary_key= True,
+                                  unique= True)
+    course_name= models.CharField(max_length=30,
+                                  blank= True,
+                                  null= True)
+    class_VI= models.BooleanField(default= False)
+    class_VII= models.BooleanField(default= False)
+    class_VIII= models.BooleanField(default= False)
+    class_IX= models.BooleanField(default= False)
 """
   Pupil classes
   We can calculate total grade per class no need to store value
@@ -165,3 +186,33 @@ class SpecialCoursesPerDesiredChoice(models.Model):
     primary_class_course_code= models.ForeignKey(Courses,
                                                  on_delete= models.CASCADE,
                                                  related_name='special_course_class_course_code')
+
+# New acknowledgment table;
+class PupilClassesAcknowledgments(models.Model):
+    LEVEL_CHOICES = [
+        ('Federalno', 'Federalno takmičenje'),
+        ('Kantonalno', 'Kantonalno takmičenje'),
+        ('Općinsko', 'Općinsko takmičenje'),
+    ]
+
+    POSITION_CHOICES = [
+        (1, 'Prvo mjesto'),
+        (2, 'Drugo mjesto'),
+        (3, 'Treće mjesto'),
+    ]
+
+    pupil_id = models.ForeignKey(Pupil, on_delete=models.CASCADE, related_name='pupil_id_acknowledgments')
+    ack_name = models.CharField(max_length=100)
+    ack_points = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],
+                                              null=True,
+                                              blank=True)
+    ack_position = models.PositiveIntegerField(choices=POSITION_CHOICES)
+    ack_level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
+    ack_class_id = models.ForeignKey(Class, on_delete=models.CASCADE, related_name='pupil_ack_class_id')
+
+    class Meta:
+        db_table = 'PupilClassesAcknowledgments'
+        constraints = [
+            models.UniqueConstraint(fields=['pupil_id', 'ack_name', 'ack_level', 'ack_class_id'],
+                                    name='composite-pk-pupil_id-ack_name-ack_level-ack_class_id')
+        ]

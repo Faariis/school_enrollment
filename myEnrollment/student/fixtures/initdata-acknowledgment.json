@@ -1,16 +1,48 @@
 [
-    {
-        "model": "student.Acknowledgment",
-        "fields": {
-          "ack_name": "Takmicenje iz matematike",
-          "ack_points":"30"
-        }
-      },
-      {
-          "model": "student.Acknowledgment",
-          "fields": {
-            "ack_name": "Takmicenje iz informatike",
-            "ack_points":"40"
-          }
-      }
+  {
+    "model": "student.Acknowledgment",
+    "fields": {
+      "ack_name": "Takmicenje iz matematike",
+      "ack_points": "30"
+    }
+  },
+  {
+    "model": "student.Acknowledgment",
+    "fields": {
+      "ack_name": "Takmicenje iz informatike",
+      "ack_points": "40"
+    }
+  },
+  {
+    "model": "student.Acknowledgment",
+    "pk": 3,
+    "fields": {
+      "ack_name": "Takmicenje iz fizike",
+      "ack_points": 30
+    }
+  },
+  {
+    "model": "student.Acknowledgment",
+    "pk": 4,
+    "fields": {
+      "ack_name": "Takmicenje iz robotike",
+      "ack_points": 40
+    }
+  },
+  {
+    "model": "student.Acknowledgment",
+    "pk": 5,
+    "fields": {
+      "ack_name": "Takmicenje iz geografije",
+      "ack_points": 30
+    }
+  },
+  {
+    "model": "student.Acknowledgment",
+    "pk": 6,
+    "fields": {
+      "ack_name": "Takmicenje iz historije",
+      "ack_points": 40
+    }
+  }
 ]

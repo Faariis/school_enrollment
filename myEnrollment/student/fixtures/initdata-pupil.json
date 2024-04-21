@@ -1,19 +1,1532 @@
 [
-    {
-      "model": "student.Pupil",
-      "fields": {
-        "primary_school":"Edhem Mulabdic",
-        "secondary_shool_id": "1",
-        "desired_course_A":"RTiA",
-        "name":"Neko",
-        "last_name": "Neko",
-        "gender": "M",
-        "address": "Nedjeljica",
-        "guardian_name": "Neki",
-        "phone_number": "+38761123456",
-        "guardian_number": "+38761123456",
-        "guardian_email": "guardina@email.com",
-        "email": "neko@neko.com"
-      }
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "John",
+      "last_name": "Doe",
+      "gender": "M",
+      "address": "123 Main St",
+      "guardian_name": "Jane Doe",
+      "phone_number": "+1234567890",
+      "guardian_number": "+1234567890",
+      "guardian_email": "jane.doe@example.com",
+      "email": "john.doe@example.com"
     }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Emily",
+      "last_name": "Smith",
+      "gender": "F",
+      "address": "456 Oak St",
+      "guardian_name": "John Smith",
+      "phone_number": "+1234567891",
+      "guardian_number": "+1234567891",
+      "guardian_email": "john.smith@example.com",
+      "email": "emily.smith@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Michael",
+      "last_name": "Johnson",
+      "gender": "M",
+      "address": "789 Elm St",
+      "guardian_name": "Sarah Johnson",
+      "phone_number": "+1234567892",
+      "guardian_number": "+1234567892",
+      "guardian_email": "sarah.johnson@example.com",
+      "email": "michael.johnson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Jessica",
+      "last_name": "Brown",
+      "gender": "F",
+      "address": "1010 Pine St",
+      "guardian_name": "David Brown",
+      "phone_number": "+1234567893",
+      "guardian_number": "+1234567893",
+      "guardian_email": "david.brown@example.com",
+      "email": "jessica.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "William",
+      "last_name": "Jones",
+      "gender": "M",
+      "address": "111 Maple St",
+      "guardian_name": "Mary Jones",
+      "phone_number": "+1234567894",
+      "guardian_number": "+1234567894",
+      "guardian_email": "mary.jones@example.com",
+      "email": "william.jones@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Emma",
+      "last_name": "Taylor",
+      "gender": "F",
+      "address": "1212 Cherry St",
+      "guardian_name": "James Taylor",
+      "phone_number": "+1234567895",
+      "guardian_number": "+1234567895",
+      "guardian_email": "james.taylor@example.com",
+      "email": "emma.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Daniel",
+      "last_name": "Wilson",
+      "gender": "M",
+      "address": "1313 Pine St",
+      "guardian_name": "Jennifer Wilson",
+      "phone_number": "+1234567896",
+      "guardian_number": "+1234567896",
+      "guardian_email": "jennifer.wilson@example.com",
+      "email": "daniel.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Olivia",
+      "last_name": "Martinez",
+      "gender": "F",
+      "address": "1414 Maple St",
+      "guardian_name": "Robert Martinez",
+      "phone_number": "+1234567897",
+      "guardian_number": "+1234567897",
+      "guardian_email": "robert.martinez@example.com",
+      "email": "olivia.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Liam",
+      "last_name": "Anderson",
+      "gender": "M",
+      "address": "1515 Cherry St",
+      "guardian_name": "Karen Anderson",
+      "phone_number": "+1234567898",
+      "guardian_number": "+1234567898",
+      "guardian_email": "karen.anderson@example.com",
+      "email": "liam.anderson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "RTiA",
+      "name": "Ava",
+      "last_name": "Wilson",
+      "gender": "F",
+      "address": "1616 Oak St",
+      "guardian_name": "Richard Wilson",
+      "phone_number": "+1234567899",
+      "guardian_number": "+1234567899",
+      "guardian_email": "richard.wilson@example.com",
+      "email": "ava.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Sophia",
+      "last_name": "Johnson",
+      "gender": "F",
+      "address": "123 Main St",
+      "guardian_name": "Michael Johnson",
+      "phone_number": "+1234567800",
+      "guardian_number": "+1234567800",
+      "guardian_email": "michael.johnson@example.com",
+      "email": "sophia.johnson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "James",
+      "last_name": "Brown",
+      "gender": "M",
+      "address": "456 Oak St",
+      "guardian_name": "Jessica Brown",
+      "phone_number": "+1234567801",
+      "guardian_number": "+1234567801",
+      "guardian_email": "jessica.brown@example.com",
+      "email": "james.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Benjamin",
+      "last_name": "Smith",
+      "gender": "M",
+      "address": "789 Elm St",
+      "guardian_name": "Emily Smith",
+      "phone_number": "+1234567802",
+      "guardian_number": "+1234567802",
+      "guardian_email": "emily.smith@example.com",
+      "email": "benjamin.smith@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Charlotte",
+      "last_name": "Martinez",
+      "gender": "F",
+      "address": "1010 Pine St",
+      "guardian_name": "William Martinez",
+      "phone_number": "+1234567803",
+      "guardian_number": "+1234567803",
+      "guardian_email": "william.martinez@example.com",
+      "email": "charlotte.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Mia",
+      "last_name": "Wilson",
+      "gender": "F",
+      "address": "111 Maple St",
+      "guardian_name": "Oliver Wilson",
+      "phone_number": "+1234567804",
+      "guardian_number": "+1234567804",
+      "guardian_email": "oliver.wilson@example.com",
+      "email": "mia.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Amelia",
+      "last_name": "Taylor",
+      "gender": "F",
+      "address": "1212 Cherry St",
+      "guardian_name": "Ethan Taylor",
+      "phone_number": "+1234567805",
+      "guardian_number": "+1234567805",
+      "guardian_email": "ethan.taylor@example.com",
+      "email": "amelia.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Elijah",
+      "last_name": "Anderson",
+      "gender": "M",
+      "address": "1313 Pine St",
+      "guardian_name": "Abigail Anderson",
+      "phone_number": "+1234567806",
+      "guardian_number": "+1234567806",
+      "guardian_email": "abigail.anderson@example.com",
+      "email": "elijah.anderson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Olivia",
+      "last_name": "White",
+      "gender": "F",
+      "address": "1414 Elm St",
+      "guardian_name": "Michael White",
+      "phone_number": "+1234567807",
+      "guardian_number": "+1234567807",
+      "guardian_email": "michael.white@example.com",
+      "email": "olivia.white@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "William",
+      "last_name": "Miller",
+      "gender": "M",
+      "address": "1515 Maple St",
+      "guardian_name": "Elizabeth Miller",
+      "phone_number": "+1234567808",
+      "guardian_number": "+1234567808",
+      "guardian_email": "elizabeth.miller@example.com",
+      "email": "william.miller@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEL",
+      "name": "Isabella",
+      "last_name": "Jones",
+      "gender": "F",
+      "address": "1616 Oak St",
+      "guardian_name": "Richard Jones",
+      "phone_number": "+1234567809",
+      "guardian_number": "+1234567809",
+      "guardian_email": "richard.jones@example.com",
+      "email": "isabella.jones@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Liam",
+      "last_name": "Brown",
+      "gender": "M",
+      "address": "123 Oak St",
+      "guardian_name": "Jessica Brown",
+      "phone_number": "+1234567810",
+      "guardian_number": "+1234567810",
+      "guardian_email": "jessica.brown@example.com",
+      "email": "liam.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Emma",
+      "last_name": "Davis",
+      "gender": "F",
+      "address": "456 Elm St",
+      "guardian_name": "Michael Davis",
+      "phone_number": "+1234567811",
+      "guardian_number": "+1234567811",
+      "guardian_email": "michael.davis@example.com",
+      "email": "emma.davis@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Noah",
+      "last_name": "Wilson",
+      "gender": "M",
+      "address": "789 Maple St",
+      "guardian_name": "Oliver Wilson",
+      "phone_number": "+1234567812",
+      "guardian_number": "+1234567812",
+      "guardian_email": "oliver.wilson@example.com",
+      "email": "noah.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Ava",
+      "last_name": "Martinez",
+      "gender": "F",
+      "address": "1010 Pine St",
+      "guardian_name": "William Martinez",
+      "phone_number": "+1234567813",
+      "guardian_number": "+1234567813",
+      "guardian_email": "william.martinez@example.com",
+      "email": "ava.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Sophia",
+      "last_name": "Taylor",
+      "gender": "F",
+      "address": "111 Elm St",
+      "guardian_name": "Ethan Taylor",
+      "phone_number": "+1234567814",
+      "guardian_number": "+1234567814",
+      "guardian_email": "ethan.taylor@example.com",
+      "email": "sophia.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Jackson",
+      "last_name": "Anderson",
+      "gender": "M",
+      "address": "1212 Oak St",
+      "guardian_name": "Abigail Anderson",
+      "phone_number": "+1234567815",
+      "guardian_number": "+1234567815",
+      "guardian_email": "abigail.anderson@example.com",
+      "email": "jackson.anderson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Evelyn",
+      "last_name": "White",
+      "gender": "F",
+      "address": "1313 Elm St",
+      "guardian_name": "Michael White",
+      "phone_number": "+1234567816",
+      "guardian_number": "+1234567816",
+      "guardian_email": "michael.white@example.com",
+      "email": "evelyn.white@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Mason",
+      "last_name": "Harris",
+      "gender": "M",
+      "address": "1414 Elm St",
+      "guardian_name": "Olivia Harris",
+      "phone_number": "+1234567817",
+      "guardian_number": "+1234567817",
+      "guardian_email": "olivia.harris@example.com",
+      "email": "mason.harris@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Harper",
+      "last_name": "Martin",
+      "gender": "F",
+      "address": "1515 Maple St",
+      "guardian_name": "William Martin",
+      "phone_number": "+1234567818",
+      "guardian_number": "+1234567818",
+      "guardian_email": "william.martin@example.com",
+      "email": "harper.martin@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ELEN",
+      "name": "Ethan",
+      "last_name": "Thompson",
+      "gender": "M",
+      "address": "1616 Oak St",
+      "guardian_name": "Sophia Thompson",
+      "phone_number": "+1234567819",
+      "guardian_number": "+1234567819",
+      "guardian_email": "sophia.thompson@example.com",
+      "email": "ethan.thompson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Olivia",
+      "last_name": "Johnson",
+      "gender": "F",
+      "address": "123 Oak St",
+      "guardian_name": "Michael Johnson",
+      "phone_number": "+1234567820",
+      "guardian_number": "+1234567820",
+      "guardian_email": "michael.johnson@example.com",
+      "email": "olivia.johnson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "William",
+      "last_name": "Brown",
+      "gender": "M",
+      "address": "456 Elm St",
+      "guardian_name": "Jessica Brown",
+      "phone_number": "+1234567821",
+      "guardian_number": "+1234567821",
+      "guardian_email": "jessica.brown@example.com",
+      "email": "william.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Sophia",
+      "last_name": "Davis",
+      "gender": "F",
+      "address": "789 Maple St",
+      "guardian_name": "Oliver Davis",
+      "phone_number": "+1234567822",
+      "guardian_number": "+1234567822",
+      "guardian_email": "oliver.davis@example.com",
+      "email": "sophia.davis@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Elijah",
+      "last_name": "Wilson",
+      "gender": "M",
+      "address": "1010 Pine St",
+      "guardian_name": "William Wilson",
+      "phone_number": "+1234567823",
+      "guardian_number": "+1234567823",
+      "guardian_email": "william.wilson@example.com",
+      "email": "elijah.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "James",
+      "last_name": "Martinez",
+      "gender": "M",
+      "address": "111 Elm St",
+      "guardian_name": "Ava Martinez",
+      "phone_number": "+1234567824",
+      "guardian_number": "+1234567824",
+      "guardian_email": "ava.martinez@example.com",
+      "email": "james.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Benjamin",
+      "last_name": "Taylor",
+      "gender": "M",
+      "address": "1212 Oak St",
+      "guardian_name": "Sophia Taylor",
+      "phone_number": "+1234567825",
+      "guardian_number": "+1234567825",
+      "guardian_email": "sophia.taylor@example.com",
+      "email": "benjamin.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Amelia",
+      "last_name": "Harris",
+      "gender": "F",
+      "address": "1313 Elm St",
+      "guardian_name": "Ethan Harris",
+      "phone_number": "+1234567826",
+      "guardian_number": "+1234567826",
+      "guardian_email": "ethan.harris@example.com",
+      "email": "amelia.harris@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Charlotte",
+      "last_name": "Clark",
+      "gender": "F",
+      "address": "1414 Maple St",
+      "guardian_name": "Noah Clark",
+      "phone_number": "+1234567827",
+      "guardian_number": "+1234567827",
+      "guardian_email": "noah.clark@example.com",
+      "email": "charlotte.clark@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Lucas",
+      "last_name": "Lewis",
+      "gender": "M",
+      "address": "1515 Oak St",
+      "guardian_name": "Emma Lewis",
+      "phone_number": "+1234567828",
+      "guardian_number": "+1234567828",
+      "guardian_email": "emma.lewis@example.com",
+      "email": "lucas.lewis@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MAST",
+      "name": "Mia",
+      "last_name": "Lee",
+      "gender": "F",
+      "address": "1616 Pine St",
+      "guardian_name": "Oliver Lee",
+      "phone_number": "+1234567829",
+      "guardian_number": "+1234567829",
+      "guardian_email": "oliver.lee@example.com",
+      "email": "mia.lee@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Ethan",
+      "last_name": "Anderson",
+      "gender": "M",
+      "address": "123 Oak St",
+      "guardian_name": "Jennifer Anderson",
+      "phone_number": "+1234567830",
+      "guardian_number": "+1234567830",
+      "guardian_email": "jennifer.anderson@example.com",
+      "email": "ethan.anderson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Madison",
+      "last_name": "White",
+      "gender": "F",
+      "address": "456 Elm St",
+      "guardian_name": "Daniel White",
+      "phone_number": "+1234567831",
+      "guardian_number": "+1234567831",
+      "guardian_email": "daniel.white@example.com",
+      "email": "madison.white@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Alexander",
+      "last_name": "Miller",
+      "gender": "M",
+      "address": "789 Maple St",
+      "guardian_name": "Jessica Miller",
+      "phone_number": "+1234567832",
+      "guardian_number": "+1234567832",
+      "guardian_email": "jessica.miller@example.com",
+      "email": "alexander.miller@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Abigail",
+      "last_name": "Taylor",
+      "gender": "F",
+      "address": "1010 Pine St",
+      "guardian_name": "Michael Taylor",
+      "phone_number": "+1234567833",
+      "guardian_number": "+1234567833",
+      "guardian_email": "michael.taylor@example.com",
+      "email": "abigail.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Daniel",
+      "last_name": "Brown",
+      "gender": "M",
+      "address": "111 Elm St",
+      "guardian_name": "Emily Brown",
+      "phone_number": "+1234567834",
+      "guardian_number": "+1234567834",
+      "guardian_email": "emily.brown@example.com",
+      "email": "daniel.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Sophie",
+      "last_name": "Wilson",
+      "gender": "F",
+      "address": "1212 Oak St",
+      "guardian_name": "David Wilson",
+      "phone_number": "+1234567835",
+      "guardian_number": "+1234567835",
+      "guardian_email": "david.wilson@example.com",
+      "email": "sophie.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Logan",
+      "last_name": "Martinez",
+      "gender": "M",
+      "address": "1313 Elm St",
+      "guardian_name": "Mia Martinez",
+      "phone_number": "+1234567836",
+      "guardian_number": "+1234567836",
+      "guardian_email": "mia.martinez@example.com",
+      "email": "logan.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Ava",
+      "last_name": "Clark",
+      "gender": "F",
+      "address": "1414 Maple St",
+      "guardian_name": "Noah Clark",
+      "phone_number": "+1234567837",
+      "guardian_number": "+1234567837",
+      "guardian_email": "noah.clark@example.com",
+      "email": "ava.clark@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Liam",
+      "last_name": "Lewis",
+      "gender": "M",
+      "address": "1515 Oak St",
+      "guardian_name": "Emma Lewis",
+      "phone_number": "+1234567838",
+      "guardian_number": "+1234567838",
+      "guardian_email": "emma.lewis@example.com",
+      "email": "liam.lewis@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "MASTK",
+      "name": "Olivia",
+      "last_name": "Lee",
+      "gender": "F",
+      "address": "1616 Pine St",
+      "guardian_name": "Oliver Lee",
+      "phone_number": "+1234567839",
+      "guardian_number": "+1234567839",
+      "guardian_email": "oliver.lee@example.com",
+      "email": "olivia.lee@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Elijah",
+      "last_name": "Harris",
+      "gender": "M",
+      "address": "1234 Oak St",
+      "guardian_name": "Sarah Harris",
+      "phone_number": "+1234567840",
+      "guardian_number": "+1234567840",
+      "guardian_email": "sarah.harris@example.com",
+      "email": "elijah.harris@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Isabella",
+      "last_name": "Martin",
+      "gender": "F",
+      "address": "567 Elm St",
+      "guardian_name": "James Martin",
+      "phone_number": "+1234567841",
+      "guardian_number": "+1234567841",
+      "guardian_email": "james.martin@example.com",
+      "email": "isabella.martin@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Mason",
+      "last_name": "Thompson",
+      "gender": "M",
+      "address": "8910 Maple St",
+      "guardian_name": "Lauren Thompson",
+      "phone_number": "+1234567842",
+      "guardian_number": "+1234567842",
+      "guardian_email": "lauren.thompson@example.com",
+      "email": "mason.thompson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Mia",
+      "last_name": "Garcia",
+      "gender": "F",
+      "address": "1111 Pine St",
+      "guardian_name": "William Garcia",
+      "phone_number": "+1234567843",
+      "guardian_number": "+1234567843",
+      "guardian_email": "william.garcia@example.com",
+      "email": "mia.garcia@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Aiden",
+      "last_name": "Martinez",
+      "gender": "M",
+      "address": "1212 Elm St",
+      "guardian_name": "Victoria Martinez",
+      "phone_number": "+1234567844",
+      "guardian_number": "+1234567844",
+      "guardian_email": "victoria.martinez@example.com",
+      "email": "aiden.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Charlotte",
+      "last_name": "Jones",
+      "gender": "F",
+      "address": "1313 Oak St",
+      "guardian_name": "Christopher Jones",
+      "phone_number": "+1234567845",
+      "guardian_number": "+1234567845",
+      "guardian_email": "christopher.jones@example.com",
+      "email": "charlotte.jones@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Scarlett",
+      "last_name": "Jackson",
+      "gender": "F",
+      "address": "1414 Elm St",
+      "guardian_name": "Ashley Jackson",
+      "phone_number": "+1234567846",
+      "guardian_number": "+1234567846",
+      "guardian_email": "ashley.jackson@example.com",
+      "email": "scarlett.jackson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Liam",
+      "last_name": "Davis",
+      "gender": "M",
+      "address": "1515 Oak St",
+      "guardian_name": "Emma Davis",
+      "phone_number": "+1234567847",
+      "guardian_number": "+1234567847",
+      "guardian_email": "emma.davis@example.com",
+      "email": "liam.davis@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Olivia",
+      "last_name": "Wilson",
+      "gender": "F",
+      "address": "1616 Pine St",
+      "guardian_name": "Jacob Wilson",
+      "phone_number": "+1234567848",
+      "guardian_number": "+1234567848",
+      "guardian_email": "jacob.wilson@example.com",
+      "email": "olivia.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "ST",
+      "name": "Emma",
+      "last_name": "Taylor",
+      "gender": "F",
+      "address": "1717 Oak St",
+      "guardian_name": "Michael Taylor",
+      "phone_number": "+1234567849",
+      "guardian_number": "+1234567849",
+      "guardian_email": "michael.taylor@example.com",
+      "email": "emma.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Alexander",
+      "last_name": "Johnson",
+      "gender": "M",
+      "address": "1234 Oak St",
+      "guardian_name": "Emily Johnson",
+      "phone_number": "+1234567850",
+      "guardian_number": "+1234567850",
+      "guardian_email": "emily.johnson@example.com",
+      "email": "alexander.johnson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Sophia",
+      "last_name": "Anderson",
+      "gender": "F",
+      "address": "567 Elm St",
+      "guardian_name": "David Anderson",
+      "phone_number": "+1234567851",
+      "guardian_number": "+1234567851",
+      "guardian_email": "david.anderson@example.com",
+      "email": "sophia.anderson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Henry",
+      "last_name": "Martinez",
+      "gender": "M",
+      "address": "8910 Maple St",
+      "guardian_name": "Jessica Martinez",
+      "phone_number": "+1234567852",
+      "guardian_number": "+1234567852",
+      "guardian_email": "jessica.martinez@example.com",
+      "email": "henry.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Amelia",
+      "last_name": "Brown",
+      "gender": "F",
+      "address": "1111 Pine St",
+      "guardian_name": "Matthew Brown",
+      "phone_number": "+1234567853",
+      "guardian_number": "+1234567853",
+      "guardian_email": "matthew.brown@example.com",
+      "email": "amelia.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Ethan",
+      "last_name": "Taylor",
+      "gender": "M",
+      "address": "1212 Elm St",
+      "guardian_name": "Olivia Taylor",
+      "phone_number": "+1234567854",
+      "guardian_number": "+1234567854",
+      "guardian_email": "olivia.taylor@example.com",
+      "email": "ethan.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Ava",
+      "last_name": "Wilson",
+      "gender": "F",
+      "address": "1313 Oak St",
+      "guardian_name": "Christopher Wilson",
+      "phone_number": "+1234567855",
+      "guardian_number": "+1234567855",
+      "guardian_email": "christopher.wilson@example.com",
+      "email": "ava.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Logan",
+      "last_name": "Miller",
+      "gender": "M",
+      "address": "1414 Elm St",
+      "guardian_name": "Ava Miller",
+      "phone_number": "+1234567856",
+      "guardian_number": "+1234567856",
+      "guardian_email": "ava.miller@example.com",
+      "email": "logan.miller@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Mia",
+      "last_name": "Garcia",
+      "gender": "F",
+      "address": "1515 Oak St",
+      "guardian_name": "Emma Garcia",
+      "phone_number": "+1234567857",
+      "guardian_number": "+1234567857",
+      "guardian_email": "emma.garcia@example.com",
+      "email": "mia.garcia@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Charlotte",
+      "last_name": "Rodriguez",
+      "gender": "F",
+      "address": "1616 Pine St",
+      "guardian_name": "Noah Rodriguez",
+      "phone_number": "+1234567858",
+      "guardian_number": "+1234567858",
+      "guardian_email": "noah.rodriguez@example.com",
+      "email": "charlotte.rodriguez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "AT",
+      "name": "Amelia",
+      "last_name": "Martinez",
+      "gender": "F",
+      "address": "1717 Oak St",
+      "guardian_name": "William Martinez",
+      "phone_number": "+1234567859",
+      "guardian_number": "+1234567859",
+      "guardian_email": "william.martinez@example.com",
+      "email": "amelia.martinez@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Liam",
+      "last_name": "Smith",
+      "gender": "M",
+      "address": "123 Main St",
+      "guardian_name": "Emma Smith",
+      "phone_number": "+1234567860",
+      "guardian_number": "+1234567860",
+      "guardian_email": "emma.smith@example.com",
+      "email": "liam.smith@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Olivia",
+      "last_name": "Jones",
+      "gender": "F",
+      "address": "456 Elm St",
+      "guardian_name": "Michael Jones",
+      "phone_number": "+1234567861",
+      "guardian_number": "+1234567861",
+      "guardian_email": "michael.jones@example.com",
+      "email": "olivia.jones@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Noah",
+      "last_name": "Williams",
+      "gender": "M",
+      "address": "789 Oak St",
+      "guardian_name": "Sophia Williams",
+      "phone_number": "+1234567862",
+      "guardian_number": "+1234567862",
+      "guardian_email": "sophia.williams@example.com",
+      "email": "noah.williams@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Emma",
+      "last_name": "Brown",
+      "gender": "F",
+      "address": "101 Elm St",
+      "guardian_name": "James Brown",
+      "phone_number": "+1234567863",
+      "guardian_number": "+1234567863",
+      "guardian_email": "james.brown@example.com",
+      "email": "emma.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "William",
+      "last_name": "Taylor",
+      "gender": "M",
+      "address": "202 Oak St",
+      "guardian_name": "Elizabeth Taylor",
+      "phone_number": "+1234567864",
+      "guardian_number": "+1234567864",
+      "guardian_email": "elizabeth.taylor@example.com",
+      "email": "william.taylor@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Sophia",
+      "last_name": "Anderson",
+      "gender": "F",
+      "address": "303 Elm St",
+      "guardian_name": "Daniel Anderson",
+      "phone_number": "+1234567865",
+      "guardian_number": "+1234567865",
+      "guardian_email": "daniel.anderson@example.com",
+      "email": "sophia.anderson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "James",
+      "last_name": "Miller",
+      "gender": "M",
+      "address": "404 Oak St",
+      "guardian_name": "Sophia Miller",
+      "phone_number": "+1234567866",
+      "guardian_number": "+1234567866",
+      "guardian_email": "sophia.miller@example.com",
+      "email": "james.miller@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Benjamin",
+      "last_name": "Davis",
+      "gender": "M",
+      "address": "505 Elm St",
+      "guardian_name": "Isabella Davis",
+      "phone_number": "+1234567867",
+      "guardian_number": "+1234567867",
+      "guardian_email": "isabella.davis@example.com",
+      "email": "benjamin.davis@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Charlotte",
+      "last_name": "Wilson",
+      "gender": "F",
+      "address": "606 Oak St",
+      "guardian_name": "Oliver Wilson",
+      "phone_number": "+1234567868",
+      "guardian_number": "+1234567868",
+      "guardian_email": "oliver.wilson@example.com",
+      "email": "charlotte.wilson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "METT",
+      "name": "Isabella",
+      "last_name": "Moore",
+      "gender": "F",
+      "address": "707 Elm St",
+      "guardian_name": "Jacob Moore",
+      "phone_number": "+1234567869",
+      "guardian_number": "+1234567869",
+      "guardian_email": "jacob.moore@example.com",
+      "email": "isabella.moore@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Ethan",
+      "last_name": "Robinson",
+      "gender": "M",
+      "address": "123 Maple St",
+      "guardian_name": "Emily Robinson",
+      "phone_number": "+1234567870",
+      "guardian_number": "+1234567870",
+      "guardian_email": "emily.robinson@example.com",
+      "email": "ethan.robinson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Amelia",
+      "last_name": "Young",
+      "gender": "F",
+      "address": "456 Oak St",
+      "guardian_name": "Michael Young",
+      "phone_number": "+1234567871",
+      "guardian_number": "+1234567871",
+      "guardian_email": "michael.young@example.com",
+      "email": "amelia.young@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Mason",
+      "last_name": "King",
+      "gender": "M",
+      "address": "789 Elm St",
+      "guardian_name": "Sophie King",
+      "phone_number": "+1234567872",
+      "guardian_number": "+1234567872",
+      "guardian_email": "sophie.king@example.com",
+      "email": "mason.king@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Avery",
+      "last_name": "Wright",
+      "gender": "F",
+      "address": "101 Maple St",
+      "guardian_name": "Benjamin Wright",
+      "phone_number": "+1234567873",
+      "guardian_number": "+1234567873",
+      "guardian_email": "benjamin.wright@example.com",
+      "email": "avery.wright@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Logan",
+      "last_name": "Johnson",
+      "gender": "M",
+      "address": "202 Maple St",
+      "guardian_name": "Charlotte Johnson",
+      "phone_number": "+1234567874",
+      "guardian_number": "+1234567874",
+      "guardian_email": "charlotte.johnson@example.com",
+      "email": "logan.johnson@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Harper",
+      "last_name": "Brown",
+      "gender": "F",
+      "address": "303 Oak St",
+      "guardian_name": "James Brown",
+      "phone_number": "+1234567875",
+      "guardian_number": "+1234567875",
+      "guardian_email": "james.brown@example.com",
+      "email": "harper.brown@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mak Dizdar",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Mia",
+      "last_name": "Evans",
+      "gender": "F",
+      "address": "404 Maple St",
+      "guardian_name": "Daniel Evans",
+      "phone_number": "+1234567876",
+      "guardian_number": "+1234567876",
+      "guardian_email": "daniel.evans@example.com",
+      "email": "mia.evans@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Skender Kulenovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Evelyn",
+      "last_name": "Clark",
+      "gender": "F",
+      "address": "505 Elm St",
+      "guardian_name": "Matthew Clark",
+      "phone_number": "+1234567877",
+      "guardian_number": "+1234567877",
+      "guardian_email": "matthew.clark@example.com",
+      "email": "evelyn.clark@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Edhem Mulabdic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Oliver",
+      "last_name": "Hill",
+      "gender": "M",
+      "address": "606 Oak St",
+      "guardian_name": "Emma Hill",
+      "phone_number": "+1234567878",
+      "guardian_number": "+1234567878",
+      "guardian_email": "emma.hill@example.com",
+      "email": "oliver.hill@example.com"
+    }
+  },
+  {
+    "model": "student.Pupil",
+    "fields": {
+      "primary_school": "Mesa Selimovic",
+      "secondary_shool_id": 1,
+      "desired_course_A": "GT",
+      "name": "Lucas",
+      "last_name": "Green",
+      "gender": "M",
+      "address": "707 Elm St",
+      "guardian_name": "Ava Green",
+      "phone_number": "+1234567879",
+      "guardian_number": "+1234567879",
+      "guardian_email": "ava.green@example.com",
+      "email": "lucas.green@example.com"
+    }
+  }
 ]

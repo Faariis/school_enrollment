@@ -1,23 +1,178 @@
 [
-    {
-      "model": "student.Courses",
-      "fields": {
-        "course_code":"MM",
-        "course_name":"Matematika"
-      }
-    },
-    {
-        "model": "student.Courses",
-        "fields": {
-          "course_code":"ENG",
-          "course_name":"Engleski jezik"
-        }
-    },
-    {
-        "model": "student.Courses",
-        "fields": {
-          "course_code":"BIO",
-          "course_name":"Biologija"
-        }
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "MM",
+      "course_name": "Matematika",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
     }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "ENG",
+      "course_name": "Engleski jezik",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "BIO",
+      "course_name": "Biologija",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "FIZ",
+      "course_name": "Fizika",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": false
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "INF",
+      "course_name": "Informatika",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "HIS",
+      "course_name": "Historija",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "GEO",
+      "course_name": "Geografija",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "BJZ",
+      "course_name": "Bosanski jezik i knjizevnost",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "NJZ",
+      "course_name": "Njemacki jezik",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "LK",
+      "course_name": "Likovna kultura",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "MK",
+      "course_name": "Muzicka kultura",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "HEM",
+      "course_name": "Hemija",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": false,
+      "class_VI": false
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "TIZO",
+      "course_name": "Tjelesni i zdravstveni odgoj",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "TK",
+      "course_name": "Tehnicka kultura",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "GOB",
+      "course_name": "Gradjansko obrazovanje",
+      "class_IX": true,
+      "class_VIII": false,
+      "class_VII": false,
+      "class_VI": false
+    }
+  },
+  {
+    "model": "student.Courses",
+    "fields": {
+      "course_code": "VJR",
+      "course_name": "Vjeronauka",
+      "class_IX": true,
+      "class_VIII": true,
+      "class_VII": true,
+      "class_VI": true
+    }
+  }
 ]

@@ -67,6 +67,8 @@ class ApiOverview(APIView):
             'GET/POST/PUT/DELETE existing student with id':'/api/sec-students/student-list/<int:pk>/',
             'GET/CREATE courses of a student <pk> ':'/api/sec-students/student-list/<int:pk>/course-create/',
             'GET/POST/PUT/DELETE courses of a student with <pk>':'/api/sec-students/student-list/<int:pk>/courses/',
+            'GET course codes per class': '/api/sec-students/student/class_course/',
+            'GET/POST acknowledgment of a student': '/api/sec-students/student/<int:pk>/acknowledgments/',
          }
         return Response(api_urls)
 

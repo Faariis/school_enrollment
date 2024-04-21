@@ -1,4 +1,4 @@
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from secondarySchools.serializers import(
                                           CantonSerializer,
                                           SecondarySchoolSerializer,
@@ -88,7 +88,7 @@ class SchoolCoursesCreateView(CreateAPIView):
 
 class SchoolCoursesListView(ListAPIView):
     serializer_class= CoursesSecondarySchoolSerializer
-    permission_classes= [IsAuthenticated]
+    permission_classes= [IsAuthenticatedOrReadOnly]
     def get_queryset(self):
         pk= self.kwargs['pk']
         return CoursesSecondarySchool.objects.filter(school_id= pk)

@@ -6,8 +6,22 @@
   {
     "model": "secondarySchools.Canton",
     "fields": {
+      "_canton_code": "ZDK",
+      "canton_name": "Zenicko-dobojski"
+    }
+  },
+  {
+    "model": "secondarySchools.Canton",
+    "fields": {
       "_canton_code": "SA",
-      "canton_name":"Sarajevski kanton"
+      "canton_name": "Sarajevski kanton"
+    }
+  },
+  {
+    "model": "secondarySchools.Canton",
+    "fields": {
+      "_canton_code": "SBK",
+      "canton_name": "Srednjobosanski"
     }
   }
 ]

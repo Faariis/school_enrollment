@@ -8,18 +8,38 @@
     "model": "secondarySchools.SecondarySchool",
     "pk": 2,
     "fields": {
-      "school_canton_code":"ZDK",
-      "school_name":"Medicinska skola, Zenica",
-      "school_address":"Crkvice"
+      "school_name": "Medicinska skola, Zenica",
+      "school_address": "Crkvice",
+      "school_email": "mdsze@school.ba",
+      "school_canton_code": "ZDK"
     }
   },
   {
     "model": "secondarySchools.SecondarySchool",
     "pk": 3,
     "fields": {
-      "school_canton_code":"SA",
-      "school_name":"Medicinska skola, Sarajevo",
-      "school_address":"Dobrinja"
+      "school_name": "Prva gimnazija Zenica",
+      "school_address": "Bulevar, Zenica",
+      "school_email": "gze@school.ba",
+      "school_canton_code": "ZDK"
+    }
+  },
+  {
+    "model": "secondarySchools.SecondarySchool",
+    "fields": {
+      "school_name": "Ekonomska skola Zenica",
+      "school_address": "Mejdandžik, Zenica",
+      "school_email": "esze@school.ba",
+      "school_canton_code": "ZDK"
+    }
+  },
+  {
+    "model": "secondarySchools.SecondarySchool",
+    "fields": {
+      "school_name": "Industrijska skola Zenica",
+      "school_address": "Bulevar Kralja Tvrtka, Zenica",
+      "school_email": "isze@school.ba",
+      "school_canton_code": "ZDK"
     }
   }
 ]

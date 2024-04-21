@@ -3,15 +3,80 @@
     "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "RTiA",
-      "course_name":"Racunarska tehnika i automatika",
+      "course_name": "Racunarska tehnika i automatika",
+      "course_duration": "IV",
       "school_id": 1
     }
   },
   {
     "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
-      "_course_code": "EL",
-      "course_name":"Elektronicar telekomunikacija",
+      "_course_code": "ELEL",
+      "course_name": "Elektrotehničar elektronike",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "ELEN",
+      "course_name": "Elektrotehničar energetike",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "MAST",
+      "course_name": "Mašinski tehničar",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "MASTK",
+      "course_name": "Mašinski tehničar za kompjutersko upravljanje mašinama",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "ST",
+      "course_name": "Tehničar drumskog saobraćaja",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "AT",
+      "course_name": "Arhitektonski tehničar",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "METT",
+      "course_name": "Metalurši tehničar",
+      "course_duration": "IV",
+      "school_id": 1
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "GT",
+      "course_name": "Geodetski tehničar",
+      "course_duration": "IV",
       "school_id": 1
     }
   },
@@ -19,7 +84,26 @@
     "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "MEH",
-      "course_name":"Mehatronika",
+      "course_name": "Mehatronika",
+      "course_duration": "IV",
+      "school_id": 5
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "MT",
+      "course_name": "Medicinski tehnicar",
+      "course_duration": "IV",
+      "school_id": 2
+    }
+  },
+  {
+    "model": "secondarySchools.CoursesSecondarySchool",
+    "fields": {
+      "_course_code": "ZT",
+      "course_name": "Zubni tehnicar",
+      "course_duration": "IV",
       "school_id": 2
     }
   },
@@ -27,9 +111,9 @@
     "model": "secondarySchools.CoursesSecondarySchool",
     "fields": {
       "_course_code": "EL-meh",
-      "course_name":"Elektronicar-mehanicar",
-      "school_id": 2,
-      "course_duration":"III"
+      "course_name": "Elektronicar-mehanicar",
+      "school_id": 5,
+      "course_duration": "III"
     }
   }
 ]

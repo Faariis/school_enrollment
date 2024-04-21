@@ -1,0 +1,68 @@
+[
+    {
+        "model": "student.PupilClassesAcknowledgments",
+        "fields": {
+            "ack_name": "Matematika",
+            "ack_points": 5,
+            "ack_position": 1,
+            "ack_level": "Federalno",
+            "ack_class_id_id": "VIII",
+            "pupil_id_id": 1
+        }
+    },
+    {
+        "model": "student.PupilClassesAcknowledgments",
+        "fields": {
+            "ack_name": "Fizika",
+            "ack_points": 3,
+            "ack_position": 2,
+            "ack_level": "Kantonalno",
+            "ack_class_id_id": "VIII",
+            "pupil_id_id": 1
+        }
+    },
+    {
+        "model": "student.PupilClassesAcknowledgments",
+        "fields": {
+            "ack_name": "Informatika",
+            "ack_points": 3,
+            "ack_position": 2,
+            "ack_level": "Općinsko",
+            "ack_class_id_id": "VIII",
+            "pupil_id_id": 1
+        }
+    },
+    {
+        "model": "student.PupilClassesAcknowledgments",
+        "fields": {
+            "ack_name": "Matematika",
+            "ack_points": 3,
+            "ack_position": 3,
+            "ack_level": "Federalno",
+            "ack_class_id_id": "VIII",
+            "pupil_id_id": 2
+        }
+    },
+    {
+        "model": "student.PupilClassesAcknowledgments",
+        "fields": {
+            "ack_name": "Fizika",
+            "ack_points": 4,
+            "ack_position": 1,
+            "ack_level": "Kantonalno",
+            "ack_class_id_id": "VIII",
+            "pupil_id_id": 2
+        }
+    },
+    {
+        "model": "student.PupilClassesAcknowledgments",
+        "fields": {
+            "ack_name": "Informatika",
+            "ack_points": 3,
+            "ack_position": 1,
+            "ack_level": "Općinsko",
+            "ack_class_id_id": "VIII",
+            "pupil_id_id": 2
+        }
+    }
+]

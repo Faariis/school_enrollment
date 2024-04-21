@@ -1,20 +1,875 @@
 [
-    {
-        "model": "student.SpecialCoursesPerDesiredChoice",
-        "fields": {
-          "school_id": "1",
-          "course_code":"RTiA",
-          "primary_class_code": "VII",
-          "primary_class_course_code":"MM"
-        }
-      },
-      {
-          "model": "student.SpecialCoursesPerDesiredChoice",
-          "fields": {
-            "school_id": "1",
-            "course_code":"RTiA",
-            "primary_class_code": "VII",
-            "primary_class_course_code":"ENG"
-          }
-      }
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "RTIA",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEL",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ELEN",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MAST",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "MASTK",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "ST",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "INF"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "AT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "HEM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "HEM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "TK"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "METT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "MM"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "FIZ"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VI",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VII",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "VIII",
+      "primary_class_course_code": "GEO"
+    }
+  },
+  {
+    "model": "student.SpecialCoursesPerDesiredChoice",
+    "fields": {
+      "school_id": "1",
+      "course_code": "GT",
+      "primary_class_code": "IX",
+      "primary_class_course_code": "GEO"
+    }
+  }
 ]
